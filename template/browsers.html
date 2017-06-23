@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Gogo Talk</title>
+	<style>
+		body{
+			text-align: center;
+			font-family: '微软雅黑';
+		}
+		ul,li,h2,p{
+			margin:0;padding:0;
+		}
+		img{
+			border: none;
+		}
+		.browtext{
+			width: 100%;
+			font-size: 22px;
+			color:#666;
+			margin-bottom: 28px;
+		}
+		.browtext li{
+			display: inline-block;
+		}
+		.browerbox{
+			width:auto;
+			overflow: hidden;
+			margin-top: 35px;
+			padding-left: 31px;
+			padding-right: 23px;
+		}
+		.browerbox .brower{
+			float: left;
+		}
+		.browerbox .brower>a{
+			display: block;
+			cursor: pointer;
+		}
+		.browerbox .brower>p{
+            color:#666;
+            margin-top: 17px;
+		}
+		#bowesers{
+			position: absolute;
+			left: 0;top: 0;right: 0;bottom: 0;
+			margin: auto;
+			height:560px;
+			width: 771px;
+			background: url(../browser/browsers_header.png) no-repeat top center #fff;
+			padding-top: 68px;
+		}
+		#bowesers>h2{
+			font-size: 38px;
+			font-weight: normal;
+			margin-bottom: 23px;
+		}
+		#bowesers>p{
+			color:#737373;
+			line-height: 30px;
+		}
+		#gengxin{
+			width: 146px;
+			height: 46px;
+			border:1px solid #f34242;
+			border-radius: 7px;
+			color:#f34242;
+			display: block;
+			line-height: 46px;
+			text-align: center;
+			text-decoration: none;
+			cursor: pointer;
+			margin-top: 27px;
+			margin-left: 21px;
+		}
+	</style>
+</head>
+<body>
+<div  id="bowesers">
+	<h2>学习效果提升200%</h2>
+	<ul class="browtext">
+		<li>不卡顿</li>
+		<li>更安全</li>
+	</ul>
+	<p>尊敬的会员，检测到您的浏览器版本较低，强力推荐 “谷歌浏览器”</p>
+	<p>不支持火狐、IE等其它浏览器</p>
+	<div class="browerbox">
+	    <div class="brower" style='padding-top: 38px;margin-right: 100px'>
+	    	<a href="http://chrome.360.cn/">
+				<img src="../browser/browsers_360.png" alt="">
+			</a>
+			<p>360浏览器</p>
+	    </div>
+	    <div class="brower" style='margin-right:45px;'>
+	    	<a href="http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html">
+				<img src="../browser/browsers_chrome.jpg" alt="">
+			</a>
+			<p style='margin-top: 0;margin-left:-23%'>
+				Chrome
+			</p>
+			<a id='gengxin' href="http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html">下载更新</a>
+	    </div>
+	    <div class="brower" style='padding-top: 38px;margin-right: 0;'>
+	    	<a href="http://ie.sogou.com/">
+				<img src="../browser/browsers_sogo.png" alt="">
+			</a>
+			<p>搜狗浏览器</p>
+	    </div>
+	</div>
+
+</div>
+	
+</body>
+</html>
