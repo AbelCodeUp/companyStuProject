@@ -136,7 +136,7 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
         $('#wlhSUCtable').hide();
         $("#wlhSUCtable_header").hide();
         //右边栏显示隐藏
-        var isShowRightBar = false;
+        $rootScope.isShowRightBar = false;
         $rootScope.studyIndex = 1;
         var noData = false;
          $scope.getStudyList($rootScope.studyIndex);
@@ -190,7 +190,7 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
         $('#wlhWEItable').hide();
         $("#wlhWEItable_header").hide();
         //右边栏显示隐藏
-        var isShowRightBar = false;
+        $rootScope.isShowRightBar = false;
         $rootScope.studyIndex = 1;
         var noData = false;
         $rootScope.getStudyLists(1);
