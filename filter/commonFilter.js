@@ -122,7 +122,9 @@ comfilter.filter('weekDay', function ($rootScope) {
 comfilter.filter('dateDay', function ($rootScope) {
 	return function (date) {
 		if (date.indexOf('T')< 0) {
-			return date.slice(date.indexOf('-')+1);
+			var time=date.slice(date.indexOf('-')+1);
+			time=time.split('-');
+			return time[0] + '月' + time[1] + '日';
 		} else {
 			var d = date.split('T')[0];
 			var date = d.split('-')[1] + '月' + d.split('-')[2] + '日';

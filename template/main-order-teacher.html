@@ -169,7 +169,7 @@
                     <div class="teacherimg"><img id="teacherImg" sex-img="{{tsex}}" ng-src="{{timg}}"/></div>
                     <p ng-bind="tcName"></p>
                 </div>
-                <div style="margin-left:62px;">预约时间：<span>{{getMonths}}月{{getdays}}日（{{getWeeks}}）&nbsp;{{thisTime}}</span></div>
+                <div style="margin-left:62px;">预约时间：<span>{{thisDay | dateDay}}（{{thisDay | weekDay}}）&nbsp;{{thisTime}}</span></div>
                 <!--<div display="none">教材章节：<span ng-bind="nextClassName.FileTittle"></span></div>-->
             </div>
             <div class="modal-footer">
@@ -195,7 +195,7 @@
                     <div class="teacherimg"><img id="teacherImg_chong" ng-src="{{timg}}" sex-img="{{tsex}}"/></div>
                     <p ng-bind="tcName"></p>
                 </div>
-                <div style="margin-left:62px;">预约时间：<span>{{getMonths}}月{{getdays}}日（{{getWeeks}}）&nbsp;{{thisTime}}</span></div>
+                <div style="margin-left:62px;">预约时间：<span>{{thisDay | dateDay}}（{{thisDay | weekDay}}）&nbsp;{{thisTime}}</span></div>
                 <div style="margin-left:62px;">重上课程：<span ng-bind="zjData.FileTittle"></span></div>
             </div>
             <div class="modal-footer">
