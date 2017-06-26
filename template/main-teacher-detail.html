@@ -1,3 +1,29 @@
+<style>
+    .modal .modal-dialog .modal-content .modal-header{
+        border-width:1px;
+    }
+    .modal-footer{
+        border-top:0;
+    }
+    .modal-Confirming .teacherimgbox{
+        width: auto;
+        height: 110px;margin:0 auto
+    }
+    .modal-Confirming .teacherimgbox p{
+        text-align:center;
+        line-height:30px;
+    }
+    .modal-Confirming .teacherimg{
+        width: 80px;height:80px;border:1px solid #eaeaea;
+        border-radius: 50%;
+        margin:0 auto;
+    }
+    .modal-Confirming .teacherimg img{width:100%}
+    .modal .modal-dialog .modal-content .modal-footer{
+        padding-top:0;
+    }
+    .close:hover{opacity: 1;color:#cf121c}
+</style>
 <div class="col-lg-12">
     <!-- Start content -->
     <div class="orderTeacher">
@@ -84,16 +110,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="custom-width-modalLabel">是否确认预约</h4>
+                <h4 class="modal-title" id="custom-width-modalLabel">确定预约</h4>
             </div>
             <div class="modal-Confirming">
-                <div>预约时间：<span>{{thisDate}}&nbsp;{{getWeeks}}&nbsp;|&nbsp;{{sxw}}：&nbsp;{{thisTime}}</span></div>
-                <div>预约老师：<span ng-bind="tcName"></span></div>
-                <div>教材章节：<span ng-bind="nextClassName.FileTittle"></span></div>
+                <div class="teacherimgbox">
+                    <div class="teacherimg"><img id="teacherImg" ng-src="{{timg}}"  sex-img="{{tsex}}"/></div>
+                    <p ng-bind="tcName"></p>
+                </div>
+                <div style="margin-left:62px;">预约时间：<span>{{getMonths}}月{{getdays}}日（{{getWeeks}}）&nbsp;{{thisTime}}</span></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="nextSendData()">确认</button>
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="background:#b3b3b3!important;border:1px solid #b3b3b3!important;margin-right:34px">取消</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="nextSendData()" style="background:#cf121c!important;border:1px solid #cf121c!important">确认</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -107,16 +135,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="custom-width-modalLabel">是否确认预约</h4>
+                <h4 class="modal-title" id="custom-width-modalLabel">确定重上</h4>
             </div>
             <div class="modal-Confirming">
-                <div>预约时间：<span>{{thisDate}}&nbsp;{{getWeeks}}&nbsp;|&nbsp;{{sxw}}：&nbsp;{{thisTime}}</span></div>
-                <div>预约老师：<span ng-bind="tcName"></span></div>
-                <div>教材章节：<span ng-bind="zjData.FileTittle"></span></div>
+                <div class="teacherimgbox">
+                    <div class="teacherimg"><img id="teacherImg_chong"  ng-src="{{timg}}" sex-img="{{tsex}}"/></div>
+                    <p ng-bind="tcName"></p>
+                </div>
+                <div style="margin-left:62px;">预约时间：<span>{{getMonths}}月{{getdays}}日（{{getWeeks}}）&nbsp;{{thisTime}}</span></div>
+                <div style="margin-left:62px;">重上课程：<span ng-bind="zjData.FileTittle"></span></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="zjSendData()">确认</button>
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="background:#b3b3b3!important;border:1px solid #b3b3b3!important;margin-right:34px">取消</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="zjSendData()" style="background:#cf121c!important;border:1px solid #cf121c!important">确认</button>
             </div>
         </div>
         <!-- /.modal-content -->

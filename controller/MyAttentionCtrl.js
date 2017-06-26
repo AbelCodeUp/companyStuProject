@@ -332,6 +332,8 @@ MyAttention.controller('MyAttentionCtrl', ['$scope', '$rootScope', '$cookies', '
 
 							$scope.booklists = res.data;
 
+							$("#chooseTeacherName").html($(".cardBox-active .cardName").html())
+
 							$scope.nextClassName = $scope.booklists[$scope.booklists.length - 1];
 
 						} else if (res.result >= 1000) {

@@ -5,10 +5,11 @@
     text-align: center;
 }
 .learning-table td div.b_tchNameBox{
-    max-width:128px;
+    max-width:200px;
     margin: 0 auto;
     text-align: center!important;
     position: relative;
+    min-width: 140px;
 }
 .leaList{
     position: absolute;
@@ -39,10 +40,10 @@
     width: 100%;
 }
 .learning-table .learning-table-on td{
-    color: #ff8a4d;
+    color: #cf121c;
 }
 .learning-table .learning-table-on td a{
-    color: #ff8a4d;
+    color: #cf121c;
 }
 .learning-table-over td:last-of-type{
     color: #5fbeaa;
@@ -76,6 +77,10 @@
 }
 /* page */
 #laypage{
+    margin-top: 20px;
+    text-align: right;
+}
+#laypages{
     margin-top: 20px;
     text-align: right;
 }

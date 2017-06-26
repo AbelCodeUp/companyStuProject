@@ -255,11 +255,6 @@
         margin-top: 20px;
         height: 32px;
         line-height: 32px;
-        color: #000;
-        padding: 0 10px 0 10px;
-        border: 1px solid #dd5b5b;
-        border-radius: 8px;
-        color: #dd5b5b;
     }
 
     .modal-content .modal-yuyue button {
@@ -502,7 +497,8 @@
                 <h4 class="modal-title" id="custom-width-modalLabel">选择课程</h4>
             </div>
             <div class="modal-yuyue">
-                <p>下一节</p>
+                <!-- <p>下一节</p> -->
+                <p><span id='chooseTeacherName'></span> <!-- <span>{{studyList.StartTime | getMonths}}月{{studyList.StartTime | getDates}}日（{{studyList.StartTime | weekDay}}）&nbsp;{{studyList.StartTime | getHours}}</span> --></p>
                 <button ng-click="nextSendData()">预约</button>
             </div>
             <ul class="modal-con">

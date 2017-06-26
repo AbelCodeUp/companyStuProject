@@ -167,30 +167,31 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="custom-width-modalLabel">我的评价</h4>
+                        <h4 class="modal-title" id="custom-width-modalLabel">课后评价</h4>
                     </div>
-                    <div class="modal-pingjia">
-
+                    <div class="modal-pingjia" style='color:#333'>
+                        <div style='padding:0 15px'>
                         <div class="smyclearfix pingjia-bot">
-                            <div class="pingjia-title">你喜欢这个老师吗？</div>
+                            <div class="pingjia-title">对老师的满意度</div>
                             <div class="pingxing">
                                     <div id="likeStar" data-score="3"></div>
                             </div>
-                            <div class="pingjia-text pingjia-text1">和老师互动非常开心</div>
+                            <div class="pingjia-text pingjia-text1" style='color:#333!important;font-size: 12px;text-align: right'>和老师互动非常开心</div>
                         </div>
                         <div class="smyclearfix pingjia-bot">
-                            <div class="pingjia-title">还记得刚刚学过的内容吗？</div>
+                            <div class="pingjia-title">这节课的学习效果</div>
                             <div class="pingxing">
                                 <div id="rememberStar" data-score="3"></div>
                             </div>
-                            <div class="pingjia-text pingjia-text2">基本都记下了</div>
+                            <div class="pingjia-text pingjia-text2" style='color:#333!important;font-size: 12px;text-align: right'>基本都记下了</div>
                         </div>
-                        <div class="pingjia-title2"> 您有什么想告诉我们的？</div>
-                        <textarea class="form-control" rows="5" id="techer-content"></textarea>
+                        </div>
+                        <!-- <div class="pingjia-title2"> 您有什么想告诉我们的？</div> -->
+                        <textarea class="form-control" rows="5" id="techer-content" placeholder="请输入您对本节课程和外教老师的评价（200字以内）" style="margin-top: 20px;font-size: 12px;"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" ng-click="SubmitTag(lessonTagId)" class="btn btn-primary waves-effect waves-light">确认</button>
-                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="background:#b3b3b3!important;border:1px solid #b3b3b3!important;margin-right:34px">取消</button>
+                        <button type="button" ng-click="SubmitTag(lessonTagId)" class="btn btn-primary waves-effect waves-light" style="background:#cf121c!important;border:1px solid #cf121c!important">确认</button>                        
                     </div>
                 </div>
 

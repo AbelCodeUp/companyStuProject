@@ -533,12 +533,23 @@ orderTeacherCtrl.controller('orderTeacherCtrl', ['$scope', '$rootScope', '$cooki
 		$('#confirmDialog').modal('show');
 
 		$scope.getWeeks = $scope.weeks[new Date($scope.thisDay).getDay()];
+		$scope.getMonths = new Date($scope.thisDay).getMonth()+1;
+		$scope.getdays = new Date($scope.thisDay).getDate();
 
 		$scope.sxw = getText($scope.thisDay + ' ' + $scope.thisTime);
 
 		$scope.tcName = data.TeacherName;
-
+		$scope.timg=data.ImageUrl;//图片地址
+		$scope.tsex=data.Gender;//老师性别
+		if(data.ImageUrl == "http://teacher.gogo-talk.com"){
+			if (data.Gender > 0) {
+				$("#teacherImg").attr('src', 'images/men.png');
+			}else if (data.Gender <= 0 ){
+				$("#teacherImg").attr('src', 'images/women.png');
+			}
+		}
 		$scope.saveDataNext = data;
+
 
 	};
 	// 'lessonId': $scope.saveDataNext.lessonId,
@@ -601,9 +612,20 @@ orderTeacherCtrl.controller('orderTeacherCtrl', ['$scope', '$rootScope', '$cooki
 		$('#confirmDialogZj').modal('show');
 
 		$scope.getWeeks = $scope.weeks[new Date($scope.thisDay).getDay()];
+		$scope.getMonths = new Date($scope.thisDay).getMonth()+1;
+		$scope.getdays = new Date($scope.thisDay).getDate();
 		$scope.sxw = getText($scope.thisDay + ' ' + $scope.thisTime);
 
 		$scope.tcName = data.TeacherName;
+		$scope.timg=data.ImageUrl;//图片地址
+		$scope.tsex=data.Gender;//老师性别
+		if(data.ImageUrl == "http://teacher.gogo-talk.com"){
+			if (data.Gender > 0) {
+				$("#teacherImg_chong").attr('src', 'images/men.png');
+			}else if (data.Gender <= 0 ){
+				$("#teacherImg_chong").attr('src', 'images/women.png');
+			}
+		}
 		$scope.saveDataZj = data;
 		$scope.zjData = datazj;
 

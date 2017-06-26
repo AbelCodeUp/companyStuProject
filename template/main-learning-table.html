@@ -19,91 +19,314 @@
         font-size: 22px;
         color: #3f3f3f;
     }
+    .orderTeacher_title .orderul{
+        height:65px;
+        float: left;
+    }
+    .orderTeacher_title .orderul li{
+        float:left;
+        width: 62px;
+        position:relative;
+        cursor: pointer;
+        text-align: center;
+    }
+    .orderTeacher_title .orderul li.active{
+        border-bottom:3px solid #d6121c;
+    }
+    .wlh_jiaobiao{
+        padding:0 8px;
+        color:#fff;
+        font-size: 10px;
+        background:#bdbdbd;
+        position: absolute;
+        top:0;
+        right:-30px;
+        height:16px;
+        line-height: 16px;
+        border-radius:8px;
+    }
+    .orderTeacher_title .orderul li.active .wlh_jiaobiao{
+        background:#d6121c;
+    }
+    .reBlock{
+        display: inline-block;
+    }
+    .reNone{
+        display: none;
+    }
+    .wlhTeacherImg{
+        width: 58px;
+        height:58px;
+        border:1px solid #ccc;
+        border-radius:50%;
+        overflow: hidden;
+        float: left;
+        margin-right:8px;
+    }
+    .wlhTeacherImg img{
+        width: 100%;
+    }
+    .learning-table .wlhyuxi{
+        width:64px;
+        height:28px;
+        line-height: 28px;
+        text-align: center;
+        font-size: 10px;
+        color:#fff;
+        background:#cf121c;
+        display: inline-block;
+        border-radius:14px;
+    }
+    .wlh_inClass{
+        width: 86px;
+        height:36px;
+        text-align:center;
+        line-height: 36px;
+        border:1px solid #666;
+        border-radius:3px;
+        color: #666;
+        display: inline-block;
+    }
+    .wlh_inClass.wlhgrey{
+        color: #666;
+        background:#fff;
+        border:1px solid #666;
+    }
+    .wlh_inClass.wlhred{
+        color: #fff!important;
+        background:#cf121c;
+        border:1px solid #cf121c;
+    }
+    .learning-table .wlhquxiao{
+        width: 86px;
+        height:36px;
+        text-align:center;
+        line-height: 36px;
+        border:1px solid #cf121c;
+        border-radius:3px;
+        color: #cf121c!important;
+        display: inline-block;
+    }
+    .modal .modal-dialog .modal-content .modal-header{
+        border-width:1px;
+    }
+    .modal-footer{
+        border-top:0;
+    }
+    .close:hover{opacity: 1;color:#cf121c}
 </style>
 <div class="col-lg-12">
     <!-- Start content -->
-    <div class="orderTeacher">
-        <h2 class="orderTeacher_title">学习记录<p style="float: right;margin-right: 30px;"><a href="/stuLessonRoom.html?&type=debug&r=1.6" target="_blank">设备调试</a></p></h2>
+    <div class="orderTeacher">        
+        <div class="orderTeacher_title">
+            <ul class="orderul">
+                <li id="weiBox" style="margin-right:70px" ng-click="wlhWEI('#weiBox');"><p>未完成</p><div class="wlh_jiaobiao" ng-bind="weiNum"></div></li>
+                <li id="sucBox" ng-click="wlhSUC('#sucBox');"><p>已完成</p><div class="wlh_jiaobiao" ng-bind="sucNum"></div></li>
+            </ul>
+            <p style="float: right;margin-right: 30px;"><a href="/stuLessonRoom.html?&type=debug&r=1.6" target="_blank">设备调试</a></p>
+        </div>
         <div class="table-none" id="studyNo" style="display: block;">
             <img src="images/none/table-none.png">
             <div class="table-none-text">当前没有学习记录，去预约课程吧！</div>
             <div><button type="button" class="btn btn-warning waves-effect waves-light w-lg" ui-sref="home.orderteacher" onClick="_czc.push(['_trackEvent', '学习记录页,暂无学习记录，去预约按钮', '点击', '学习记录页,暂无学习记录，去预约按钮']);">去预约</button></div>
         </div>
-        <div style="padding: 0 30px;min-height:600px; display:none;" class="studyList">
+        <!-- 未完成 start-->
+        <div style="padding: 0 30px;min-height:600px; display:none;" id="wlhWEItable" class="studyList">
             <table class="learning-table" border="0" cellspacing="0" cellpadding="0">
-                <thead style="display: none;" class="studyList">
+                <thead style="display: none;" id="wlhWEItable_header" class="studyList">
                     <tr>
-                        <th>时间</th>
+                        <th>开课时间</th>
+                        <th>课程</th>
+                        <th>老师</th>
                         <th>状态</th>
-                        <th>考勤</th>
-                        <th>课程名称</th>
-                        <th>教师姓名</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="studyList in studyLists" ng-class="{'learning-table-on':studyList.PageStatus == 2 || (studyList.StartTime | fateDateHour) || (studyList.StartTime | fateDate)}">
-                        <td ng-bind="studyList.StartTime"></td>
+                    <tr ng-repeat="studyList in studyLists_wei" ng-class="{'learning-table-on':studyList.PageStatus == 2 && ((studyList.StartTime | fateDateHour) || (studyList.StartTime | fateDate))}">
+                        <td><span>{{studyList.StartTime | getMonths}}月{{studyList.StartTime | getDates}}日（{{studyList.StartTime | weekDay}}）&nbsp;{{studyList.StartTime | getHours}}</span></td>
                         <td>
-                            <div style="text-align: center!important;">{{studyList.PageStatus | stuList}}</div>
-                            <div style="text-align: center!important;">
-                                <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light learning-table-over-btu" ng-if="studyList.PageStatus == 3" 
-                                    ng-click="AddTeacherTag(studyList.LessonId)" onClick="_czc.push(['_trackEvent', '学习记录页,待评价按钮', '点击', '学习记录页,待评价按钮']);">待评价
-                                    <img src="images/flag_red.gif"></button>
-                                <button type="button" class="btn btn-rounded waves-effect waves-light learning-table-over-btu" ng-if="studyList.PageStatus == 4" disabled="disabled">已评价</button>
+                            <div style="text-align: center!important" ng-if="studyList.LessonName.length>1" >
+                               {{studyList.LessonName}}
+                                <img src="/images/wlh_reClass.png" alt="" ng-class="{'reBlock':studyList.IsAgain==1, 'reNone':studyList.IsAgain==0}" style="vertical-align: middle"/>
+                                <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="_blank" ng-if="studyList.LatelyLesson == 1 && studyList.IsDemo != 1 && studyList.LessonName.length > 1" onClick="_czc.push(['_trackEvent', '学习记录页,暂无学习记录，预习按钮', '点击', '学习记录页,预习按钮']);" class="wlhyuxi">预习</a>
                             </div>
-                        </td>
-                        <td ng-bind="studyList.StudentStatus | status1"></td>
-                        <td><div style="text-align: center!important" ng-if="studyList.LessonName.length>1">{{studyList.LessonName}}</div>
-						<div style="text-align: center!important"  ng-if="studyList.LessonName==' '||studyList.LessonName.length < 1">待定</div>
+                            <div style="text-align: center!important"  ng-if="studyList.LessonName==' '||studyList.LessonName.length < 1">待定</div>
                         </td>
                         <td style="position:relative;">
                             <div class="b_tchNameBox">
+                                <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" sex-img="{{studyList.Gender}}"/></div>
+                                <div style="float:left;line-height: 60px;">
                                 <span style="padding-left: 5px;padding-right: 5px;word-wrap:break-word;position:relative;">
                                     {{studyList.TeacherName}}
                                     <!--关注-->
                                     <div class="leaList guanzhu scstate" style="cursor: pointer;" ng-class="{true: 'yiguanzhu', false: 'weiguanzhu'}[studyList.tchState == 1]" data-state=
-                                    '{{studyList.tchState}}' data-tchid="{{studyList.TeacherId}}" ng-click="Attention_p($event)"></div>
+                                            '{{studyList.tchState}}' data-tchid="{{studyList.TeacherId}}" ng-click="Attention_p($event)"></div>
                                 </span>
+                                </div>
                                 <div class="b_pinjia" ng-if="studyList.IsComment">
                                     <button type="button" ng-click="lookpj($event)" class="btn btn-primary btn-rounded waves-effect waves-light learning-table-over-btu" data-remark="{{studyList.Remark}}" data-score="{{studyList.StuScore}}"
-                                    data-time="{{studyList.TchCommentTime}}" data-name="{{studyList.TeacherName}}">查看评价</button>
+                                            data-time="{{studyList.TchCommentTime}}" data-name="{{studyList.TeacherName}}">查看评价</button>
                                 </div>
-                                
+
                             </div>
                             <!--<div class="leaList guanzhu scstate" style="cursor: pointer;" ng-class="{true: 'yiguanzhu', false: 'weiguanzhu'}[studyList.tchState == 1]" data-state=
                                   '{{studyList.tchState}}' ng-bind="studyList.tchState | isGuanZhu" data-tchid="{{studyList.TeacherId}}" ng-click="Attention_p($event)"></div>-->
                         </td>
                         <td>
-                            <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="_blank" ng-if="studyList.PageStatus < 3 && studyList.IsDemo != 1 && studyList.LessonName.length > 1" onClick="_czc.push(['_trackEvent', '学习记录页,暂无学习记录，预习按钮', '点击', '学习记录页,预习按钮']);">预习</a>
+                            <div style="text-align: center!important;">{{studyList.PageStatus | stuList}}</div>
+                            <div style="text-align: center!important;">
+                                <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light learning-table-over-btu" ng-if="studyList.PageStatus == 3"
+                                    ng-click="AddTeacherTag(studyList.LessonId)" onClick="_czc.push(['_trackEvent', '学习记录页,待评价按钮', '点击', '学习记录页,待评价按钮']);">待评价
+                                    <img src="images/flag_red.gif"></button>
+                                <button type="button" class="btn btn-rounded waves-effect waves-light learning-table-over-btu" ng-if="studyList.PageStatus == 4" disabled="disabled">已评价</button>
+                            </div>
+                        </td>
+
+                        <td>
+
                             <!-- <a href="javascript:;" style="color: #eee;pointer-events: none;" ng-if="studyList.PageStatus == 1 && studyList.StartTime | fateDateHour">WEB ROOM&nbsp;&nbsp;|&nbsp;&nbsp;</a><a href="javascript:;" ng-if="studyList.PageStatus == 1 && studyList.StartTime | fateDateHour" style="color: #eee;pointer-events: none;" >VIP ROOM</a> -->
 
-                            <a href="javascript:;" ng-if="studyList.PageStatus == 0 && studyList.IsDemo != 1" ng-click="DelLesson(studyList.LessonId)">取消</a>
+                            <a class="wlhquxiao" href="javascript:;" ng-if="studyList.StartTime | fateDateHourTwo" ng-click="DelLesson(studyList.LessonId)">取消</a>
 
                             <span ng-if="studyList.PageStatus == 0 && studyList.IsDemo == 1">体验课已约</span>
                             <!-- <a href="javascript:;" ng-click="joinClassRoom(studyList.LessonId, userName, studyList.LessonName)" ng-if="studyList.PageStatus == 2 || (studyList.StartTime | fateDate)">WEB ROOM&nbsp;&nbsp;|&nbsp;&nbsp;</a> -->
-                            <a ng-if="(studyList.PageStatus == 2 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl == '---'" target="_blank"  href="/stuLessonRoom.html?lessonid={{studyList.LessonId}}&type=lesson&r=1.4">VIP ROOM</a>
+                            <a class="wlh_inClass" ng-if="(studyList.PageStatus >=0 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl == '---'" target="_blank"  href="/stuLessonRoom.html?lessonid={{studyList.LessonId}}&type=lesson&r=1.4" ng-class="{'wlhred':studyList.PageStatus == 2 && ((studyList.StartTime | fateDateHour) || (studyList.StartTime | fateDate))}">进入教室</a>
 
-                            <a ng-href="{{studyList.ClassRoomUrl}}" data-url="{{studyList.ClassRoomUrl}}" ng-click="goQQRoom(studyList.LessonId, userName, $event)" target="_blank" ng-if="(studyList.PageStatus == 2 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl != '---'" >QQ ROOM</a>
+                            <!-- <a ng-href="{{studyList.ClassRoomUrl}}" data-url="{{studyList.ClassRoomUrl}}" ng-click="goQQRoom(studyList.LessonId, userName, $event)" target="_blank" ng-if="(studyList.PageStatus == 2 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl != '---'" >QQ ROOM</a> -->
 
-                            <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="复习按钮']);"
-                             ng-if="studyList.PageStatus == 3 || studyList.PageStatus == 4">复习</a>
-                            <span ng-if="studyList.Path != ''" ng-repeat="sPath in studyList.Path.split(',')" >
+                            <!-- <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="复习按钮']);"
+                             ng-if="studyList.PageStatus == 3 || studyList.PageStatus == 4">复习</a> -->
+                            <!-- <span ng-if="studyList.Path != ''" ng-repeat="sPath in studyList.Path.split(',')" >
                                 <span ng-show="$index >= 0">|&nbsp;</span><a ng-href="{{sPath}}" target="_blank" class="vedioHover">录像{{$index + 1}}</a>
-                            </span>
+                            </span> -->
                         </td>
                     </tr>
                 </tbody>
             </table>
-            
-            
-
             <div id="laypage"></div>
         </div>
+        <!-- 未完成 end-->
+        <!-- 已完成 start-->        
+        <div style="padding: 0 30px;min-height:600px; display:none;" id="wlhSUCtable" class="studyList">
+            <table class="learning-table" border="0" cellspacing="0" cellpadding="0">
+                <thead style="display: none;" id="wlhSUCtable_header" class="studyList">
+                <tr>
+                    <th>开课时间</th>
+                    <th>课程</th>
+                    <th>老师</th>
+                    <th>状态</th>
+                    <th>考勤</th>
+                    <th>老师点评</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="studyList in studyLists" ng-class="{'learning-table-on':studyList.PageStatus == 2 && ((studyList.StartTime | fateDateHour) || (studyList.StartTime | fateDate))}">
+                    <td><span>{{studyList.StartTime | getMonths}}月{{studyList.StartTime | getDates}}日（{{studyList.StartTime | weekDay}}）&nbsp;{{studyList.StartTime | getHours}}</span></td>
+                    <td>
+                        <div style="text-align: center!important" ng-if="studyList.LessonName.length>1" >
+                            {{studyList.LessonName}}
+                            <img src="/images/wlh_reClass.png" alt="" ng-class="{'reBlock':studyList.IsAgain==1, 'reNone':studyList.IsAgain==0}" style="vertical-align: middle"/>
+                        </div>
+                        <div style="text-align: center!important"  ng-if="studyList.LessonName==' '||studyList.LessonName.length < 1">待定</div>
+                    </td>
+                    <td style="position:relative;">
+                        <div class="b_tchNameBox">
+                            <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" sex-img="{{studyList.Gender}}"/></div>
+                            <div style="float:left;line-height: 60px;">
+                                <span style="padding-left: 5px;padding-right: 5px;word-wrap:break-word;position:relative;">
+                                    {{studyList.TeacherName}}
+                                    <!--关注-->
+                                    <div class="leaList guanzhu scstate" style="cursor: pointer;" ng-class="{true: 'yiguanzhu', false: 'weiguanzhu'}[studyList.tchState == 1]" data-state=
+                                            '{{studyList.tchState}}' data-tchid="{{studyList.TeacherId}}" ng-click="Attention_p($event)"></div>
+                                </span>
+                            </div>
+
+
+                        </div>
+                        <!--<div class="leaList guanzhu scstate" style="cursor: pointer;" ng-class="{true: 'yiguanzhu', false: 'weiguanzhu'}[studyList.tchState == 1]" data-state=
+                              '{{studyList.tchState}}' ng-bind="studyList.tchState | isGuanZhu" data-tchid="{{studyList.TeacherId}}" ng-click="Attention_p($event)"></div>-->
+                    </td>
+                    <td>
+                        <div style="text-align: center!important;margin-bottom: 5px"><!-- {{studyList.PageStatus | stuList}} -->已完成</div>
+                        <div style="text-align: center!important;">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light learning-table-over-btu" ng-if="studyList.IsStuComment==false"
+                                    ng-click="AddTeacherTag(studyList.LessonId)" onClick="_czc.push(['_trackEvent', '学习记录页,待评价按钮', '点击', '学习记录页,待评价按钮']);" style='width:62px;height:26px;border:1px solid #cf121c!important;border-radius:14px;background:#cf121c!important;color:#fff!important'>评价<!-- 
+                                <img src="images/flag_red.gif"> --></button>
+                            <!-- <button type="button" class="btn btn-rounded waves-effect waves-light learning-table-over-btu" ng-if="studyList.PageStatus == 4" disabled="disabled">已评价</button> -->
+                        </div>
+                    </td>
+                    <td ng-if='studyList.TeacherStatus ==1 ||studyList.TeacherStatus ==-1' ng-bind="studyList.StudentStatus | status1"></td>
+                    <td ng-if='studyList.TeacherStatus == 0' ng-bind="studyList.TeacherStatus | status2"></td>
+
+                    <td>
+                        <div ng-if='studyList.IsComment' class="lookStar" style="margin:0 auto" data-score="{{studyList.StuScore}}"></div>
+                        <div class="b_pinjia" ng-if="studyList.IsComment">  <!--studyList.IsComment-->
+                            <button type="button" ng-click="lookpj($event)" class="btn btn-primary btn-rounded waves-effect waves-light learning-table-over-btu" data-remark="{{studyList.Remark}}" data-score="{{studyList.StuScore}}" data-time="{{studyList.TchCommentTime}}" data-name="{{studyList.TeacherName}}" style='width:62px;height:26px;border:1px solid #cf121c!important;border-radius:14px;background:#fff!important;color:#cf121c!important;margin-top: 5px'>查看</button>
+                        </div>
+                        <div style="text-align: center!important"  ng-if='studyList.IsComment==0'>暂无</div>
+                    </td>
+
+
+                    <td>
+                        <!-- <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="_blank" ng-if="studyList.PageStatus < 3 && studyList.IsDemo != 1 && studyList.LessonName.length > 1" onClick="_czc.push(['_trackEvent', '学习记录页,暂无学习记录，预习按钮', '点击', '学习记录页,预习按钮']);">预习</a> -->
+                        <!-- <a href="javascript:;" style="color: #eee;pointer-events: none;" ng-if="studyList.PageStatus == 1 && studyList.StartTime | fateDateHour">WEB ROOM&nbsp;&nbsp;|&nbsp;&nbsp;</a><a href="javascript:;" ng-if="studyList.PageStatus == 1 && studyList.StartTime | fateDateHour" style="color: #eee;pointer-events: none;" >VIP ROOM</a> -->
+
+                        <!-- <a href="javascript:;" ng-if="studyList.PageStatus == 0 && studyList.IsDemo != 1" ng-click="DelLesson(studyList.LessonId)">取消</a> -->
+
+                        <span ng-if="studyList.PageStatus == 0 && studyList.IsDemo == 1">体验课已约</span>
+                        <!-- <a href="javascript:;" ng-click="joinClassRoom(studyList.LessonId, userName, studyList.LessonName)" ng-if="studyList.PageStatus == 2 || (studyList.StartTime | fateDate)">WEB ROOM&nbsp;&nbsp;|&nbsp;&nbsp;</a> -->
+                        <!-- <a ng-if="(studyList.PageStatus == 2 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl == '---'" target="_blank"  href="/stuLessonRoom.html?lessonid={{studyList.LessonId}}&type=lesson&r=1.4">VIP ROOM</a> -->
+
+                        <!-- <a ng-href="{{studyList.ClassRoomUrl}}" data-url="{{studyList.ClassRoomUrl}}" ng-click="goQQRoom(studyList.LessonId, userName, $event)" target="_blank" ng-if="(studyList.PageStatus == 2 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl != '---'" >QQ ROOM</a> -->
+
+                        <!-- ng-if="studyList.PageStatus == 3 || studyList.PageStatus == 4" -->
+                        <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="复习按钮']);"
+                            style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;border-radius:3px;display: inline-block;color:#cf121c!important;'>课件</a>
+                        <div ng-if="studyList.Path != ''" class='wlhbackbox' style='display:inline-block;position: relative;cursor: pointer;'>
+                            <!-- <span ng-show="$index >= 0">|&nbsp;</span> -->
+                            <a style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;background:#cf121c;border-radius:3px;display: inline-block;color:#fff!important;' ng-click='xiaList($event);'>回放</a>
+                            <ul style='position: absolute;left:0;top:36px;display: none'>
+                                <li ng-repeat="sPath in studyList.Path.split(',')">
+                                    <a ng-href="{{sPath}}" target="_blank" class="vedioHover" style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;display: inline-block;color:#cf121c!important;background:#fff!important'>录像{{$index + 1}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div id="laypages"></div>
+        </div>
+        <!-- 已完成 end-->        
+
         
     </div>
 
 </div>
+
+<div id="DelLessonbox" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="custom-width-modalLabel">提示</h4>
+            </div>
+            <div class="modal-Confirming">
+                <div style="text-align:center;color:#333">确定取消该节课程</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="background:#b3b3b3!important;border:1px solid #b3b3b3!important;margin-right:34px">取消</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="DelSendData()" style="background:#cf121c!important;border:1px solid #cf121c!important">确认</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <iframe id="goClient" frameborder="0" style="display: none;"></iframe>
 <iframe id="goQQRoom" frameborder="0" style="display: none;"></iframe>
 
@@ -112,31 +335,32 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="custom-width-modalLabel">外教评价</h4>
+                <h4 class="modal-title" id="custom-width-modalLabel">老师点评</h4>
             </div>
             <div class="modal-pingjia">
                 <div class="container-fluid">
                     <div class="row" style="font-size: 14px;">
-                        <div class="col-md-6 text-left">
-                            <p ng-bind="tchName"></p>
+                        <div class="col-md-5 text-left col-md-offset-1">
+                            <p style='font-size: 16px;color:#333'>老师：<span ng-bind="tchName"></span></p>
                         </div>
-                        <div class="col-md-6 text-right">
-                            <div id="lookStar" style="float:right;" data-score="{{scoreStar}}"></div>
+                        <div class="col-md-4 text-right" style='font-size: 12px;line-height: 25px;'>
+                            时间：<span ng-bind="tchTime"></span>
                         </div>
-                        <div class="col-md-12" style="margin-top: 10px;min-height: 100px;">
+                        <div class="col-md-12 ">
+                            <div id="lookStar" style="margin:0 auto;margin-top: 15px;" data-score="{{scoreStar}}"></div>
+                        </div>
+                        <div class="col-md-12" style="margin-top: 10px;min-height: 100px;color:#333;">
                             <p ng-bind="tchText" style="word-wrap:break-word">
                                 
                             </p>
                         </div>
-                        <div class="col-md-12 text-right">
-                            <span ng-bind="tchTime"></span>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">确定</button>
-            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style='background:#'>确定</button>
+            </div> -->
         </div>
 
     </div>

@@ -98,7 +98,7 @@ teacherDetailCtrl.controller('teacherDetailCtrl', function($scope, $rootScope, $
 						return false;
 
 					}
-					$scope.tcName = $scope.teacherDetail.Name; //获取老师名称
+					$scope.tcName = $scope.teacherDetail.FisrtName; //获取老师名称
 					$scope.teacherTimes = [];
 					$scope.allTime = [];
 
@@ -151,6 +151,20 @@ teacherDetailCtrl.controller('teacherDetailCtrl', function($scope, $rootScope, $
 
 
 						$scope.getWeeks = $filter('weekDay')($scope.thisDate);
+						console.log(new Date($scope.thisDate))
+						$scope.getMonths=new Date($scope.thisDate).getMonth()+1;
+						$scope.getdays=new Date($scope.thisDate).getDate();
+						$scope.tsex=res.data.info.Gender;
+						$scope.timg=res.data.info.ImageUrl;
+						if(res.data.info.ImageUrl == ""){
+							if (res.data.info.Gender > 0) {
+								$("#teacherImg_chong").attr('src', 'images/men.png');
+								$("#teacherImg").attr('src', 'images/men.png');
+							}else if (res.data.info.Gender <= 0 ){
+								$("#teacherImg_chong").attr('src', 'images/women.png');
+								$("#teacherImg").attr('src', 'images/women.png');
+							}
+						}
 
 						$scope.sxw = getText($scope.thisDate + ' ' + $scope.thisTime);
 
@@ -364,7 +378,7 @@ teacherDetailCtrl.controller('teacherDetailCtrl', function($scope, $rootScope, $
 
 	$scope.AddlessonZj = function(datazj) {
 		$('#confirmDialogZj').modal('show');
-
+        console.log($scope.teacherDetail)
 		// $scope.saveDataZj = data;
 		$scope.zjData = datazj;
 

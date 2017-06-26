@@ -29,7 +29,6 @@ angular.module('components',[])
                     }, scope.timeout);
                 }
             },
-            template: '<a href="javascript:;" on-click="onClick()" ng-disabled="timer" class="btn btn-sm find-pink">' +
-            '<span ng-if="showTimer">{{ timerCount }}{{text}}</a>';
+            template: '<a href="javascript:;" on-click="onClick()" ng-disabled="timer" class="btn btn-sm find-pink">' +'<span ng-if="showTimer">{{ timerCount }}{{text}}</a>'
     }
 })

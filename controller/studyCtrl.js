@@ -112,48 +112,131 @@ var studyCtrl = angular.module('studyCtrl',[]);
           });
         })
       }
-       //右边栏显示隐藏
-      $rootScope.isShowRightBar = false;
-      $rootScope.studyIndex = 1;
-      $scope.noData = false;
-    	$scope.getStudyList = function (pageIndex){
-        var index1 = layer.load();
-	    	$scope.pageSize = 4;
-	    	// $scope.stime = $filter('date')($rootScope.serviceTime,'yyyy-MM-dd');
-	    	// var nextYear = new Date($rootScope.serviceTime).setFullYear(new Date($rootScope.serviceTime).getFullYear() + 1);
 
-	    	// $scope.etime = $filter('date')(nextYear,'yyyy-MM-dd');
-        $('#studyNo').hide(); 
-	        httpService.get(_AjaxURL.GetStuLearnPage,{
-	        	'pageIndex':pageIndex,
-	        	'pageSize':$scope.pageSize,
-	        	'stime':'2016-11-20',
-	        	'etime':'2027-11-20'
-	        })
-        	.success(function(res){
-          		if(res.result == 1){
-                $('.studyList').show();
-                if(res.data.length == 0 && pageIndex == 1){
-                    $('#studyNo').show();
-                    $('.studyList').hide();
-                    
-                }
-       				$scope.studyLists = res.data;
-          			jsonpage(res, pageIndex, $scope.pageSize);
-                layer.close(index1);
-          		}else if(res.result >= 1000){
-                  layer.close(index1);
-                  $cookies.remove('tonken');
-                  $cookies.remove('username');
-                  $cookies.remove('isComplete');
-                  $cookies.remove('password');
-                  $cookies.remove('bookingId');
-                  // alert('登录时间太久，请重新登录');
-                  $rootScope.$state.go('index.login');
-              }
-        		
-        	})
-    	}
+
+        $scope.wlhstatus=0;//记录现在是已完成 ，还是未完成
+        //未完成
+        $scope.wlhWEI=function(obj){
+            $scope.wlhstatus=0;
+            $(obj).addClass('active').siblings().removeClass('active');
+            $('#wlhWEItable').show();
+            $("#wlhWEItable_header").show();
+            $('#wlhSUCtable').hide();
+            $("#wlhSUCtable_header").hide();
+            //右边栏显示隐藏
+            var isShowRightBar = false;
+            var studyIndex = 1;
+            var noData = false;
+            $scope.getStudyList = function (pageIndex){
+                var index1 = layer.load();
+                $scope.pageSize = 4;
+                // $scope.stime = $filter('date')($rootScope.serviceTime,'yyyy-MM-dd');
+                // var nextYear = new Date($rootScope.serviceTime).setFullYear(new Date($rootScope.serviceTime).getFullYear() + 1);
+
+                // $scope.etime = $filter('date')(nextYear,'yyyy-MM-dd');
+                $('#studyNo').hide();
+                httpService.get(_AjaxURL.GetStuLearnPage+"?Status=0",{
+                    'pageIndex':pageIndex,
+                    'pageSize':$scope.pageSize,
+                    'stime':'2016-11-20',
+                    'etime':'2027-11-20'
+                }).success(function(res){
+                        if(res.result == 1){
+
+                            if(res.data.length == 0 && pageIndex == 1){
+                                $('#studyNo').show();
+                                $('#wlhWEItable').hide();
+                                $("#wlhWEItable_header").hide();
+                            }
+                            $scope.studyLists_wei = res.data;
+
+                            $rootScope.weiNum=res.total;
+                            jsonpage(res, pageIndex, $scope.pageSize,'laypage');
+                            layer.close(index1);
+                        }else if(res.result >= 1000){
+                            layer.close(index1);
+                            $cookies.remove('tonken');
+                            $cookies.remove('username');
+                            $cookies.remove('isComplete');
+                            $cookies.remove('password');
+                            $cookies.remove('bookingId');
+                            // alert('登录时间太久，请重新登录');
+                            $rootScope.$state.go('index.login');
+                        }
+
+                    })
+            }
+        }
+        $scope.wlhWEI("#weiBox");
+        //已完成
+        $scope.wlhSUC = function(obj){
+            $scope.wlhstatus=1;
+            $(obj).addClass('active').siblings().removeClass('active');
+            $('#wlhSUCtable').show();
+            $("#wlhSUCtable_header").show();
+            $('#wlhWEItable').hide();
+            $("#wlhWEItable_header").hide();
+            //右边栏显示隐藏
+            var isShowRightBar = false;
+            var studyIndex = 1;
+            var noData = false;
+            $scope.getStudyLists = function (pageIndex){
+                var index1 = layer.load();
+                $scope.pageSize = 4;
+                // $scope.stime = $filter('date')($rootScope.serviceTime,'yyyy-MM-dd');
+                // var nextYear = new Date($rootScope.serviceTime).setFullYear(new Date($rootScope.serviceTime).getFullYear() + 1);
+
+                // $scope.etime = $filter('date')(nextYear,'yyyy-MM-dd');
+                $('#studyNo').hide();
+                httpService.get(_AjaxURL.GetStuLearnPage+"?Status=1",{
+                    'pageIndex':pageIndex,
+                    'pageSize':$scope.pageSize,
+                    'stime':'2016-11-20',
+                    'etime':'2027-11-20'
+                }).success(function(res){
+                        if(res.result == 1){
+
+                            if(res.data.length == 0 && pageIndex == 1){
+                                $('#studyNo').show();
+                                $('#wlhSUCtable').hide();
+                                $("#wlhSUCtable_header").hide();
+                            }
+                            $scope.studyLists = res.data;
+                            $rootScope.sucNum = res.total;
+                            $scope.lookpjList($(".lookStar"));
+
+                            jsonpage(res, pageIndex, $scope.pageSize,'laypages');
+                            layer.close(index1);
+                        }else if(res.result >= 1000){
+                            layer.close(index1);
+                            $cookies.remove('tonken');
+                            $cookies.remove('username');
+                            $cookies.remove('isComplete');
+                            $cookies.remove('password');
+                            $cookies.remove('bookingId');
+                            // alert('登录时间太久，请重新登录');
+                            $rootScope.$state.go('index.login');
+                        }
+
+                    })
+            }
+            $scope.getStudyLists(1);
+
+        }
+        //$scope.wlhSUC("#sucBox");
+
+       //获取已完成的总数
+        httpService.get(_AjaxURL.GetStuLearnPage+"?Status=1",{
+            'pageIndex':1,
+            'pageSize':4,
+            'stime':'2016-11-20',
+            'etime':'2027-11-20'
+        }).success(function(res){
+            if(res.result == 1){
+                $rootScope.sucNum = res.total;
+            }
+        })
+
 
       $http({
           method: 'get',
@@ -177,24 +260,35 @@ var studyCtrl = angular.module('studyCtrl',[]);
           }
 
       })
-
-
+       
 
       //取消约课
-      $scope.DelLesson = function (lessonId){
+      $scope.saveDataZj = null;
+
+      $scope.DelLesson = function(lessonId) {
+           _czc.push(['_trackEvent', '学习记录页,取消课程按钮', '点击', '学习记录页,取消课程按钮']);
+           $scope.DellessonId = lessonId;
+           $("#DelLessonbox").modal("show");
+      };
+      $scope.DelSendData = function (){
         _czc.push(['_trackEvent', '学习记录页,取消课程', '点击', '学习记录页,取消课程']);
-        layer.confirm('确定取消该节课程', {
-          btn: ['确定','取消'] //按钮
-        }, function(){
+          function zjSendData(){}
+
+
             var index = layer.load();
             httpService.get(_AjaxURL.DelLesson,{
-                'lessonId':lessonId
-            })
-              .success(function(res){
+                'lessonId':$scope.DellessonId
+            }).success(function(res){
                 if(res.result == 1){
                   layer.close(index);
                     layer.msg('取消成功', {icon: 1});
-                    $scope.getStudyList($rootScope.studyIndex);
+                    $("#DelLessonbox").modal('hide');
+                    if($scope.wlhstatus==0){
+                        $scope.getStudyList($rootScope.studyIndex);
+                    }else{
+                        $scope.getStudyLists($rootScope.studyIndex);
+                    }
+
                 }else if(res.result >= 1000){
                     $cookies.remove('tonken');
                     $cookies.remove('username');
@@ -205,9 +299,6 @@ var studyCtrl = angular.module('studyCtrl',[]);
                     $rootScope.$state.go('index.login');
                 }
               })
-          
-        });
-          
 
       }
 
@@ -230,13 +321,52 @@ var studyCtrl = angular.module('studyCtrl',[]);
         },100)
         
         $('#lookpj').modal('show');
+      }  
+      $scope.lookpjList = function(obj){
+        $scope.scoreStar = obj.attr('data-score');
+        $timeout(function(){
+          $('.lookStar').raty({
+            starOn   : 'lib/img/star-on.png',
+            starOff  : 'lib/img/star-off.png',
+            readOnly: true,
+            score: function() {
+                return $(this).attr('data-score');
+            }
+          });
+        },100)
+        
+        $('.lookpj').modal('show');
       }
+
+
+      
+
+      //回放的下拉列表
+      $scope.listFlag=true
+      $scope.xiaList = function(e){
+        var thisDom =$(e.target);
+        var parent=$(thisDom).parents("div.wlhbackbox");
+        if($scope.listFlag){  
+          $(thisDom).css('opacity','0.5')     
+          parent.find("ul").fadeIn();
+          $scope.listFlag=false;
+        }else{
+          $(thisDom).css('opacity','1')   
+          parent.find("ul").fadeOut();
+          $scope.listFlag=true;
+        }
+        
+      }
+
+      
+
+
       // layerpage 
-      function jsonpage(json, pageIndex, pageSize) {
+      function jsonpage(json, pageIndex, pageSize,cont) {
          var coun = json.total;
          var pagecount = coun % pageSize == 0 ? coun / pageSize : coun / pageSize + 1;
          var laypageindex = laypage({
-             cont: 'laypage', //容器。值支持id名、原生dom对象，jquery对象。
+             cont: cont, //容器。值支持id名、原生dom对象，jquery对象。
              skin: '#fb771f',
              pages: pagecount, //通过后台拿到的总页数
              curr: pageIndex, //初始化当前页
@@ -248,7 +378,11 @@ var studyCtrl = angular.module('studyCtrl',[]);
 
                  if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
                   $rootScope.studyIndex = obj.curr;
-                     $scope.getStudyList($rootScope.studyIndex);
+                     if($scope.wlhstatus==0){
+                         $scope.getStudyList($rootScope.studyIndex);
+                     }else{
+                         $scope.getStudyLists($rootScope.studyIndex);
+                     }
                  }
                  
              }
@@ -257,4 +391,18 @@ var studyCtrl = angular.module('studyCtrl',[]);
      $scope.getStudyList(1);
 
 
+        //进入教室
+        $scope.EnterClass = function(studyList,obj){
+            if(studyList.PageStatus==0){
+                $(obj).attr('href','/stuLessonRoom.html?lessonid=' + studyList.LessonId + '&type=lesson&r=1.4');
+                $(obj).click()
+            }else{
+                return false;
+            }
+            //ng-if="(studyList.PageStatus >=0 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl == '---'" target="_blank"  href="/stuLessonRoom.html?lessonid={{studyList.LessonId}}&type=lesson&r=1.4"
+
+        }
+
+
     });
+

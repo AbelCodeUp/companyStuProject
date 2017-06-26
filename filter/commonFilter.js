@@ -17,14 +17,25 @@ comfilter.filter('dayFilter', function($rootScope, $filter) {
 		return $filter('date')(eTimes - sTimes, 'MM:dd')
 	}
 });
-comfilter.filter('status1', function() {
+comfilter.filter('status1', function() {//学员的考勤状态
 	return function(num) {
 		if (num == 0) {
-			return '缺勤';
+			return '学员缺勤';
 		} else if (num == 1) {
 			return '正常';
 		} else if (num == -1) {
-			return '迟到';
+			return '学员迟到';
+		}
+	}
+});
+comfilter.filter('status2', function() {//老师的考勤状态
+	return function(num) {
+		if (num == 0) {
+			return '老师缺勤';
+		} else if (num == 1) {
+			return '正常';
+		} else if (num == -1) {
+			return '老师迟到';
 		}
 	}
 });
@@ -39,14 +50,15 @@ comfilter.filter('weeks', function() {
 comfilter.filter('stuList', function() {
 		return function(num) {
 			if (num == 4 || num == 3) {
-				return '已结束';
+				return '已完成';
 			} else if (num == 2) {
-				return '正在进行';
+				return '正在上课';
 			} else if (num == 0) {
 				return '未上课';
-			} else if (num == 1) {
-				return '等待上课';
 			}
+			//} else if (num == 1) {
+			//	return '等待上课';
+			//}
 		}
 	})
 	// 过滤半小时
@@ -81,13 +93,53 @@ comfilter.filter('fateDateHour', function($rootScope, $filter) {
 		}
 	}
 })
+	//大于两小时
+comfilter.filter('fateDateHourTwo', function($rootScope, $filter) {
+	return function(date) {
+		var date3 = new Date(date.replace(/-/g, '/')).getTime() - new Date($rootScope._serveTime).getTime();
+		//var diffSec = date3 / 1000 / 60;
+
+		if (date3 > 3600 * 1000 * 2) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+})
 comfilter.filter('weekDay', function() {
 	return function(date) {
-			var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+			var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六','今日'];
 			var day = new Date(date).getDay();
-			return weeks[day];
+			var now = new Date().getDay();
+			if(day == now){
+                return weeks['7'];
+			}else{
+				return weeks[day];
+			}			
 		}
 	})
+//获得小时
+comfilter.filter('getHours', function($rootScope, $filter) {
+	return function(date) {
+		if(new Date(date).getMinutes()==0){
+			return new Date(date).getHours() + ":" + "00"
+		}else{
+			return new Date(date).getHours() + ":" + new Date(date).getMinutes()
+		}
+	}
+})
+//获得月份
+comfilter.filter('getMonths', function($rootScope, $filter) {
+	return function(date) {
+		return new Date(date).getMonth()+1
+	}
+})
+//获得当前天数
+comfilter.filter('getDates', function($rootScope, $filter) {
+	return function(date) {
+		return new Date(date).getDate()
+	}
+})
 	// 课程第几节
 comfilter.filter('pageIndex', function() {
 	return function(num) {
