@@ -131,7 +131,6 @@ teacherDetailCtrl.controller('teacherDetailCtrl', function($scope, $rootScope, $
 					// console.log($scope.teacherTimes);
 					// angular.forEach($scope.teacherTimes, function(data1,index,array) {
 
-
 					// 				});
 					// $scope.teacherTimes = dateSort($scope.teacherTimes);
 					// 排序
@@ -144,16 +143,13 @@ teacherDetailCtrl.controller('teacherDetailCtrl', function($scope, $rootScope, $
 					}
 
 					if ($scope.teacherTimes.length > 0) {
+						console.log($scope.teacherTimes[0].date);
 						$scope.getTeacherTime($scope.teacherTimes[0].date);
 
 						//默认lessonId
 						$scope.thisLessonId = ($scope.teacherTimes[0].times)[0].lessonId;
 
-
-						$scope.getWeeks = $filter('weekDay')($scope.thisDate);
-						console.log(new Date($scope.thisDate))
-						$scope.getMonths=new Date($scope.thisDate).getMonth()+1;
-						$scope.getdays=new Date($scope.thisDate).getDate();
+						
 						$scope.tsex=res.data.info.Gender;
 						$scope.timg=res.data.info.ImageUrl;
 						if(res.data.info.ImageUrl == ""){

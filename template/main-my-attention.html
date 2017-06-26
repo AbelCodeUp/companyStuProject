@@ -498,7 +498,12 @@
             </div>
             <div class="modal-yuyue">
                 <!-- <p>下一节</p> -->
-                <p><span id='chooseTeacherName'></span> <!-- <span>{{studyList.StartTime | getMonths}}月{{studyList.StartTime | getDates}}日（{{studyList.StartTime | weekDay}}）&nbsp;{{studyList.StartTime | getHours}}</span> --></p>
+                <p>
+                    <span id="chooseTeacherName" style="margin-right:15px;color:#333;font-size:16px;"></span>
+                    <span ng-bind="tDate" ></span>
+                    (<span ng-bind="tWeek" ></span>)
+                    <span ng-bind="_time" ></span>
+                </p>
                 <button ng-click="nextSendData()">预约</button>
             </div>
             <ul class="modal-con">

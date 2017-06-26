@@ -308,11 +308,9 @@ commonCtrl.controller('indexCtrl', ['$scope', '$rootScope', '$window', '$cookies
 
 					$('#teacherTag').modal('hide');
 
-					// $rootScope.getStudyList(1);
+					$rootScope.getStudyLists($rootScope.studyIndex);
 
-					$timeout(function() {
-						window.location.reload();
-					}, 1000)
+
 
 
 				} else if (res.result >= 1000) {

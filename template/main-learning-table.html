@@ -97,6 +97,9 @@
         background:#cf121c;
         border:1px solid #cf121c;
     }
+    .wlh_inClass.stopClick{
+        pointer-events: none;
+    }
     .learning-table .wlhquxiao{
         width: 86px;
         height:36px;
@@ -155,7 +158,7 @@
                         </td>
                         <td style="position:relative;">
                             <div class="b_tchNameBox">
-                                <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" sex-img="{{studyList.Gender}}"/></div>
+                                <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" default-img="{{studyList.Gender}}"/></div>
                                 <div style="float:left;line-height: 60px;">
                                 <span style="padding-left: 5px;padding-right: 5px;word-wrap:break-word;position:relative;">
                                     {{studyList.TeacherName}}
@@ -175,12 +178,12 @@
                         </td>
                         <td>
                             <div style="text-align: center!important;">{{studyList.PageStatus | stuList}}</div>
-                            <div style="text-align: center!important;">
+                            <!--<div style="text-align: center!important;">
                                 <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light learning-table-over-btu" ng-if="studyList.PageStatus == 3"
                                     ng-click="AddTeacherTag(studyList.LessonId)" onClick="_czc.push(['_trackEvent', '学习记录页,待评价按钮', '点击', '学习记录页,待评价按钮']);">待评价
                                     <img src="images/flag_red.gif"></button>
                                 <button type="button" class="btn btn-rounded waves-effect waves-light learning-table-over-btu" ng-if="studyList.PageStatus == 4" disabled="disabled">已评价</button>
-                            </div>
+                            </div>-->
                         </td>
 
                         <td>
@@ -191,7 +194,7 @@
 
                             <span ng-if="studyList.PageStatus == 0 && studyList.IsDemo == 1">体验课已约</span>
                             <!-- <a href="javascript:;" ng-click="joinClassRoom(studyList.LessonId, userName, studyList.LessonName)" ng-if="studyList.PageStatus == 2 || (studyList.StartTime | fateDate)">WEB ROOM&nbsp;&nbsp;|&nbsp;&nbsp;</a> -->
-                            <a class="wlh_inClass" ng-if="(studyList.PageStatus >=0 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl == '---'" target="_blank"  href="/stuLessonRoom.html?lessonid={{studyList.LessonId}}&type=lesson&r=1.4" ng-class="{'wlhred':studyList.PageStatus == 2 && ((studyList.StartTime | fateDateHour) || (studyList.StartTime | fateDate))}">进入教室</a>
+                            <a class="wlh_inClass" ng-if="(studyList.PageStatus >=0 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl == '---'" target="_blank"  href="/stuLessonRoom.html?lessonid={{studyList.LessonId}}&type=lesson&r=1.4" ng-class="{'wlhred':(studyList.StartTime | fateDateHour),'stopClick':!(studyList.StartTime | fateDateHour)}">进入教室</a>
 
                             <!-- <a ng-href="{{studyList.ClassRoomUrl}}" data-url="{{studyList.ClassRoomUrl}}" ng-click="goQQRoom(studyList.LessonId, userName, $event)" target="_blank" ng-if="(studyList.PageStatus == 2 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl != '---'" >QQ ROOM</a> -->
 
@@ -233,7 +236,7 @@
                     </td>
                     <td style="position:relative;">
                         <div class="b_tchNameBox">
-                            <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" sex-img="{{studyList.Gender}}"/></div>
+                            <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" default-img="{{studyList.Gender}}"/></div>
                             <div style="float:left;line-height: 60px;">
                                 <span style="padding-left: 5px;padding-right: 5px;word-wrap:break-word;position:relative;">
                                     {{studyList.TeacherName}}
@@ -318,8 +321,8 @@
                 <div style="text-align:center;color:#333">确定取消该节课程</div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="background:#b3b3b3!important;border:1px solid #b3b3b3!important;margin-right:34px">取消</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="DelSendData()" style="background:#cf121c!important;border:1px solid #cf121c!important">确认</button>
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" style="width: 78px;padding:6px 0;background:#b3b3b3!important;border:1px solid #b3b3b3!important;margin-right:34px">暂不取消</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="DelSendData()" style="width: 78px;background:#cf121c!important;border:1px solid #cf121c!important">确认</button>
             </div>
         </div>
         <!-- /.modal-content -->

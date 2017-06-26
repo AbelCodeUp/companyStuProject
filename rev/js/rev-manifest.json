@@ -1,14 +1,14 @@
 {
-  "MyAttentionCtrl.js": "MyAttentionCtrl-1db898be41.js",
-  "MyAttentionCtrl的副本.js": "MyAttentionCtrl的副本-7c7d37f97f.js",
-  "ReportCtrl.js": "ReportCtrl-de90d9a346.js",
-  "homeCtrl.js": "homeCtrl-bb27b3ba3a.js",
-  "indexCtrl.js": "indexCtrl-13bfb76d81.js",
-  "loginctrl.js": "loginctrl-89ce0c1edf.js",
-  "loginctrlv1.0.js": "loginctrlv1.0-7599bff88d.js",
-  "myCalenderCtrl.js": "myCalenderCtrl-a66768e2e6.js",
-  "orderTeacherCtrl.js": "orderTeacherCtrl-dbd1915211.js",
-  "personCtrl.js": "personCtrl-157583495f.js",
-  "studyCtrl.js": "studyCtrl-a2b7af4e2f.js",
-  "teacherdetail.js": "teacherdetail-e2b0cac397.js"
+  "MyAttentionCtrl.js": "MyAttentionCtrl.js?v=66bdb12e20",
+  "MyAttentionCtrl的副本.js": "MyAttentionCtrl的副本.js?v=cdca3caa33",
+  "ReportCtrl.js": "ReportCtrl.js?v=83d7dc3303",
+  "homeCtrl.js": "homeCtrl.js?v=cf70198271",
+  "indexCtrl.js": "indexCtrl.js?v=5bf06979a1",
+  "loginctrl.js": "loginctrl.js?v=ba0d11f516",
+  "loginctrlv1.0.js": "loginctrlv1.0.js?v=408cbc3f01",
+  "myCalenderCtrl.js": "myCalenderCtrl.js?v=5004eac737",
+  "orderTeacherCtrl.js": "orderTeacherCtrl.js?v=6644f63366",
+  "personCtrl.js": "personCtrl.js?v=014ae3ee46",
+  "studyCtrl.js": "studyCtrl.js?v=73e88733fa",
+  "teacherdetail.js": "teacherdetail.js?v=7129da8bd2"
 }

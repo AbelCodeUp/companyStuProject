@@ -1,6 +1,6 @@
 var comfilter = angular.module('comfilter', []);
-comfilter.filter('numSplit', function() {
-	return function(num) {
+comfilter.filter('numSplit', function () {
+	return function (num) {
 		if (num >= 1000) {
 			return '999+';
 		} else {
@@ -8,8 +8,8 @@ comfilter.filter('numSplit', function() {
 		}
 	}
 });
-comfilter.filter('dayFilter', function($rootScope, $filter) {
-	return function(strDateEnd) {
+comfilter.filter('dayFilter', function ($rootScope, $filter) {
+	return function (strDateEnd) {
 		var eTime = strDateEnd.split(' ')[0];
 		var sTime = $filter('date')($rootScope.serviceTime, 'yyyy-MM-dd');
 		var eTimes = new Date(eTime);
@@ -17,8 +17,8 @@ comfilter.filter('dayFilter', function($rootScope, $filter) {
 		return $filter('date')(eTimes - sTimes, 'MM:dd')
 	}
 });
-comfilter.filter('status1', function() {//学员的考勤状态
-	return function(num) {
+comfilter.filter('status1', function () {//学员的考勤状态
+	return function (num) {
 		if (num == 0) {
 			return '学员缺勤';
 		} else if (num == 1) {
@@ -28,8 +28,8 @@ comfilter.filter('status1', function() {//学员的考勤状态
 		}
 	}
 });
-comfilter.filter('status2', function() {//老师的考勤状态
-	return function(num) {
+comfilter.filter('status2', function () {//老师的考勤状态
+	return function (num) {
 		if (num == 0) {
 			return '老师缺勤';
 		} else if (num == 1) {
@@ -40,63 +40,62 @@ comfilter.filter('status2', function() {//老师的考勤状态
 	}
 });
 
-comfilter.filter('weeks', function() {
-		return function(date) {
-			var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-			return weeks[new Date(date).getDay()];
+comfilter.filter('weeks', function () {
+	return function (date) {
+		var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+		return weeks[new Date(date).getDay()];
+	}
+})
+// 学习记录状态过滤
+comfilter.filter('stuList', function () {
+	return function (num) {
+		if (num == 4 || num == 3) {
+			return '已完成';
+		} else if (num == 2) {
+			return '正在上课';
+		} else if (num == 0) {
+			return '未上课';
+		} else if (num == 1) {
+			return '等待上课';
 		}
-	})
-	// 学习记录状态过滤
-comfilter.filter('stuList', function() {
-		return function(num) {
-			if (num == 4 || num == 3) {
-				return '已完成';
-			} else if (num == 2) {
-				return '正在上课';
-			} else if (num == 0) {
-				return '未上课';
-			}
-			//} else if (num == 1) {
-			//	return '等待上课';
-			//}
-		}
-	})
-	// 过滤半小时
-comfilter.filter('fateDate', function($rootScope, $filter) {
-		return function(date) {
-
-			var date3 = new Date(date.replace(/-/g, '/')).getTime() - new Date($rootScope._serveTime).getTime();
-			var diffSec = date3 / 1000 / 60;
-
-			if (diffSec <= 10 && diffSec > -25) {
-				return true;
-
-			} else if (diffSec > 10) {
-
-				return false;
-
-			}
-		}
-	})
-	//小于两小时大于半小时
-comfilter.filter('fateDateHour', function($rootScope, $filter) {
-	return function(date) {
-
+	}
+})
+// 过滤半小时
+comfilter.filter('fateDate', function ($rootScope, $filter) {
+	return function (date) {
 
 		var date3 = new Date(date.replace(/-/g, '/')).getTime() - new Date($rootScope._serveTime).getTime();
 		var diffSec = date3 / 1000 / 60;
 
-		if (diffSec <= 24 * 60 && diffSec >= 30) {
+		if (diffSec <= 10 && diffSec > -25) {
+			return true;
+
+		} else if (diffSec > 10) {
+
+			return false;
+
+		}
+	}
+})
+//小于半小时
+comfilter.filter('fateDateHour', function ($rootScope, $filter) {
+	return function (date) {
+
+
+		var date3 = new Date(date.replace(/-/g, '/')).getTime() - new Date($rootScope.serviceTime).getTime();
+		var diffSec = date3 / 1000 / 60;
+		console.log(diffSec);
+		if (diffSec <= 30 && diffSec >= -25) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 })
-	//大于两小时
-comfilter.filter('fateDateHourTwo', function($rootScope, $filter) {
-	return function(date) {
-		var date3 = new Date(date.replace(/-/g, '/')).getTime() - new Date($rootScope._serveTime).getTime();
+//大于两小时
+comfilter.filter('fateDateHourTwo', function ($rootScope, $filter) {
+	return function (date) {
+		var date3 = new Date(date.replace(/-/g, '/')).getTime() - new Date($rootScope.serviceTime).getTime();
 		//var diffSec = date3 / 1000 / 60;
 
 		if (date3 > 3600 * 1000 * 2) {
@@ -106,94 +105,108 @@ comfilter.filter('fateDateHourTwo', function($rootScope, $filter) {
 		}
 	}
 })
-comfilter.filter('weekDay', function() {
-	return function(date) {
-			var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六','今日'];
-			var day = new Date(date).getDay();
-			var now = new Date().getDay();
-			if(day == now){
-                return weeks['7'];
-			}else{
-				return weeks[day];
-			}			
+comfilter.filter('weekDay', function ($rootScope) {
+	return function (date) {
+		var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '今日'];
+		var day = new Date(date).getDay();
+		var now = new Date($rootScope.serviceTime).getDay();
+
+		if (day == now) {
+			return weeks['7'];
+		} else {
+			return weeks[day];
 		}
-	})
+	}
+})
+//过滤当前日期
+comfilter.filter('dateDay', function ($rootScope) {
+	return function (date) {
+		if (date.indexOf('T')< 0) {
+			return date.slice(date.indexOf('-')+1);
+		} else {
+			var d = date.split('T')[0];
+			var date = d.split('-')[1] + '月' + d.split('-')[2] + '日';
+			return date;
+		}
+
+	}
+})
 //获得小时
-comfilter.filter('getHours', function($rootScope, $filter) {
-	return function(date) {
-		if(new Date(date).getMinutes()==0){
+comfilter.filter('getHours', function ($rootScope, $filter) {
+	return function (date) {
+		if (new Date(date).getMinutes() == 0) {
 			return new Date(date).getHours() + ":" + "00"
-		}else{
+		} else {
 			return new Date(date).getHours() + ":" + new Date(date).getMinutes()
 		}
 	}
 })
 //获得月份
-comfilter.filter('getMonths', function($rootScope, $filter) {
-	return function(date) {
-		return new Date(date).getMonth()+1
+comfilter.filter('getMonths', function ($rootScope, $filter) {
+	return function (date) {
+		return new Date(date).getMonth() + 1
 	}
 })
 //获得当前天数
-comfilter.filter('getDates', function($rootScope, $filter) {
-	return function(date) {
+comfilter.filter('getDates', function ($rootScope, $filter) {
+	return function (date) {
 		return new Date(date).getDate()
 	}
 })
-	// 课程第几节
-comfilter.filter('pageIndex', function() {
-	return function(num) {
-			return num + 1;
-		}
-	})
-	// 等级状态
-comfilter.filter('levelStatus', function() {
-	return function(level) {
-		if(level == 0){
+// 课程第几节
+comfilter.filter('pageIndex', function () {
+	return function (num) {
+		return num + 1;
+	}
+})
+// 等级状态
+comfilter.filter('levelStatus', function () {
+	return function (level) {
+		if (level == 0) {
 			return '预备级1'
-		}else if(level == -1){
+		} else if (level == -1) {
 			return '预备级2'
-		}else{
+		} else {
 			return level;
 		}
 	}
 })
 //收藏
-comfilter.filter('fiiterNum', function() {
-	return function(data) {
-		if(data == '1'){
+comfilter.filter('fiiterNum', function () {
+	return function (data) {
+		if (data == '1') {
 			return '已  约'
-		}else if(data == '0'){
+		} else if (data == '0') {
 			return '可预约'
-		}else{
+		} else {
 			return '';
 		}
 	}
 })
 // 关注
-comfilter.filter('isGuanZhu', function() {
-	return function(data) {
-		if(data == 1){
+comfilter.filter('isGuanZhu', function () {
+	return function (data) {
+		if (data == 1) {
 			return '已关注'
-		}else if(data == 0){
+		} else if (data == 0) {
 			return '关注'
-		}else{
+		} else {
 			return '';
 		}
 	}
 })
 // 年龄
-comfilter.filter('getAge', function($rootScope) {
-	return function(data) {
+comfilter.filter('getAge', function ($rootScope) {
+	return function (data) {
 		var serverTime = $rootScope.serviceTime;
-        function getAge(t,s){
-            var sTime = new Date(s);
-            var tTime = new Date(t);
-            return (sTime.getFullYear() - tTime.getFullYear() + 1) + '岁';
-        }
+		function getAge(t, s) {
+			var sTime = new Date(s);
+			var tTime = new Date(t);
+			return (sTime.getFullYear() - tTime.getFullYear() + 1) + '岁';
+		}
 
 
 		// return  getAge(data,serverTime) == NaN ? '' : getAge(data,serverTime);
-		return  getAge(data,serverTime) == 'NaN岁' ? '--' : getAge(data,serverTime);
+		return getAge(data, serverTime) == 'NaN岁' ? '--' : getAge(data, serverTime);
 	}
 })
