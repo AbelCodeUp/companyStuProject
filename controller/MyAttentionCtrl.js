@@ -353,6 +353,15 @@ MyAttention.controller('MyAttentionCtrl', ['$scope', '$rootScope', '$filter' ,'$
 						$("#chooseTeacherName").html($(".cardBox-active .cardName").html())
 
 						$scope.nextClassName = $scope.booklists[$scope.booklists.length - 1];
+                        
+                        
+						setTimeout(function(){
+	                        $('.chooseTeacherName').tinytooltip({
+								message: function (tip) {
+									return $(this).html();
+								}
+							});	
+                        },600)
 
 					} else if (res.result >= 1000) {
 						layer.closeAll('loading')

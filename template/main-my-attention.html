@@ -250,7 +250,7 @@
         padding: 0 33px 0 33px;
     }
 
-    .modal-content .modal-yuyue p {
+    .modal-content .modal-yuyue>div {
         float: left;
         margin-top: 20px;
         height: 32px;
@@ -398,6 +398,16 @@
         color: #ff4431;
         height: 26px;
     }
+
+    #chooseTeacherName{
+        margin-right:15px;color:#333;font-size:16px;width:45px;display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        -webkit-text-overflow: ellipsis;
+        -moz-text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 </style>
 <link rel="stylesheet" href="amin-my-attention.css">
 <div class="col-lg-12" style="font-family:'Microsoft YaHei'!important; ">
@@ -494,16 +504,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
-                <h4 class="modal-title" id="custom-width-modalLabel">选择课程</h4>
+                <h4 class="modal-title" id="custom-width-modalLabel" style='color:#fff'>选择课程</h4>
             </div>
             <div class="modal-yuyue">
                 <!-- <p>下一节</p> -->
-                <p>
-                    <span id="chooseTeacherName" style="margin-right:15px;color:#333;font-size:16px;"></span>
+                <div>
+                    <div id="chooseTeacherName" class='chooseTeacherName'></div>
+                    <div style='display: inline-block;overflow: hidden;'>
                     <span ng-bind="tDate" ></span>
                     (<span ng-bind="tWeek" ></span>)
                     <span ng-bind="_time" ></span>
-                </p>
+                    </div>
+                </div>
                 <button ng-click="nextSendData()">预约</button>
             </div>
             <ul class="modal-con">
@@ -632,10 +644,6 @@
     }
 </style>
 <script>
-$('.cardName').tinytooltip({        
-    message: function (tip) {
-            return $(this).html();
-        }    
-});
+
 
 </script>
