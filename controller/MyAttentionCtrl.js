@@ -366,9 +366,11 @@ MyAttention.controller('MyAttentionCtrl', ['$scope', '$rootScope', '$filter' ,'$
 					}
 					$('#chooseTeacherName').tinytooltip({
 						message: function (tip) {
+							console.log(tip);
 							return $(this).html();
 						}
 					});
+
 				})
 			$('.modal-con').mCustomScrollbar({
 				theme: "minimal"

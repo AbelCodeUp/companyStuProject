@@ -250,7 +250,7 @@
         padding: 0 33px 0 33px;
     }
 
-    .modal-content .modal-yuyue>div {
+    .modal-content .modal-yuyue p {
         float: left;
         margin-top: 20px;
         height: 32px;
@@ -398,20 +398,8 @@
         color: #ff4431;
         height: 26px;
     }
-<<<<<<< HEAD
-
-    #chooseTeacherName{
-        margin-right:15px;color:#333;font-size:16px;width:45px;display: inline-block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -o-text-overflow: ellipsis;
-        -webkit-text-overflow: ellipsis;
-        -moz-text-overflow: ellipsis;
-        white-space: nowrap;
-=======
     .tinytooltip{
         z-index: 9999;
->>>>>>> d0909ba965e02962da0d36e1d11e8edbd2f8b7d4
     }
 </style>
 <link rel="stylesheet" href="amin-my-attention.css">
@@ -509,18 +497,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
-                <h4 class="modal-title" id="custom-width-modalLabel" style='color:#fff'>选择课程</h4>
+                <h4 class="modal-title" id="custom-width-modalLabel">选择课程</h4>
             </div>
             <div class="modal-yuyue">
                 <!-- <p>下一节</p> -->
-                <div>
-                    <div id="chooseTeacherName" class='chooseTeacherName'></div>
-                    <div style='display: inline-block;overflow: hidden;'>
+                <p>
+                    <span id="chooseTeacherName" style="margin-right:15px;color:#333;font-size:16px;"></span>
                     <span ng-bind="tDate" ></span>
                     (<span ng-bind="tWeek" ></span>)
                     <span ng-bind="_time" ></span>
-                    </div>
-                </div>
+                </p>
                 <button ng-click="nextSendData()">预约</button>
             </div>
             <ul class="modal-con">
@@ -650,19 +636,10 @@
     }
 </style>
 <script>
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
     $('.cardName').tinytooltip({        
             message: function (tip) {
-=======
-$('.cardName').tinytooltip({        
-    message: function (tip) {
->>>>>>> 01d1040ff1017b3d6192c06812bd07bed373cb30
             return $(this).html();
         }    
     });
->>>>>>> d0909ba965e02962da0d36e1d11e8edbd2f8b7d4
 
 </script>

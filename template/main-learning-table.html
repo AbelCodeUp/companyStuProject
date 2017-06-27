@@ -117,16 +117,6 @@
         border-top:0;
     }
     .close:hover{opacity: 1;color:#cf121c}
-    .cardName{
-        width:50px;
-        display: inline-block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -o-text-overflow: ellipsis;
-        -webkit-text-overflow: ellipsis;
-        -moz-text-overflow: ellipsis;
-        white-space: nowrap;
-    }
 </style>
 <div class="col-lg-12">
     <!-- Start content -->
@@ -172,9 +162,9 @@
                         <td style="position:relative;">
                             <div class="b_tchNameBox">
                                 <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" default-img="{{studyList.Gender}}" sex-img="{{studyList.Gender}}"/></div>
-                                <div style="float:left;padding-top: 19px">
+                                <div style="float:left;line-height: 60px;">
                                 <span style="padding-left: 5px;padding-right: 5px;word-wrap:break-word;position:relative;">
-                                    <span class="cardName">{{studyList.TeacherName}}</span>
+                                    {{studyList.TeacherName}}
                                     <!--关注-->
                                     <div class="leaList guanzhu scstate" style="cursor: pointer;" ng-class="{true: 'yiguanzhu', false: 'weiguanzhu'}[studyList.tchState == 1]" data-state=
                                             '{{studyList.tchState}}' data-tchid="{{studyList.TeacherId}}" ng-click="Attention_p($event)"></div>
@@ -249,10 +239,10 @@
                     </td>
                     <td style="position:relative;">
                         <div class="b_tchNameBox">
-                            <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" default-img="{{studyList.Gender}}" sex-img="{{studyList.Gender}}"/></div>
-                            <div style="float:left;padding-top: 19px">
+                            <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" default-img="{{studyList.Gender}}"/></div>
+                            <div style="float:left;line-height: 60px;">
                                 <span style="padding-left: 5px;padding-right: 5px;word-wrap:break-word;position:relative;">
-                                    <span class="cardName">{{studyList.TeacherName}}</span>
+                                    {{studyList.TeacherName}}
                                     <!--关注-->
                                     <div class="leaList guanzhu scstate" style="cursor: pointer;" ng-class="{true: 'yiguanzhu', false: 'weiguanzhu'}[studyList.tchState == 1]" data-state=
                                             '{{studyList.tchState}}' data-tchid="{{studyList.TeacherId}}" ng-click="Attention_p($event)"></div>
@@ -401,6 +391,5 @@
     </div>
 </div>
 <script>
-
     
 </script>
