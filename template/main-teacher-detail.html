@@ -37,7 +37,7 @@
                         <div  class="teacher-detail-left-item-box-pad">
                             <div class="orderTeacher_teacher_item orderTeacher_teacher_item-detail"  ng-click="clickTeacher($index, teacher.TeacherId, teacher.FisrtName)">
                                 <div class="orderTeacher_teacher_item_img">
-                                    <img class="teacher-detail-left-item-img" ng-src="{{teacher.ImageUrl}}http://learn.gogo-talk.com" sex-img="{{teacher.Gender}}">
+                                    <img class="teacher-detail-left-item-img" ng-src="{{teacher.ImageUrl}}" sex-img="{{teacher.Gender}}" default-img="{{teacher.Gender}}">
                                     <div class="orderTeacher_teacher_item_img_top"><span class="f-left-smy" ng-bind="teacher.FisrtName"></span></div>
                                     <span class="orderTeacher_teacher_item_img_year">{{teacher.Age}}岁</span>
                                 </div>
