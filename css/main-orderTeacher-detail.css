@@ -127,6 +127,11 @@
     margin:0;
     padding:0;
 }
+
+.fc-popover.fc-more-popover{
+    max-height: 119px;
+    overflow: auto;
+}
 @media screen and (min-width:1400px) {
  .teacher-detail-left-item-box-pad{
   padding:0 16px;
