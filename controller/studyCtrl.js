@@ -144,10 +144,6 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
     $scope.getStudyList = function (pageIndex) {
             var index1 = layer.load();
             $scope.pageSize = 4;
-            // $scope.stime = $filter('date')($rootScope.serviceTime,'yyyy-MM-dd');
-            // var nextYear = new Date($rootScope.serviceTime).setFullYear(new Date($rootScope.serviceTime).getFullYear() + 1);
-
-            // $scope.etime = $filter('date')(nextYear,'yyyy-MM-dd');
             $('#studyNo').hide();
             $('#studySuc').hide();
             httpService.get(_AjaxURL.GetStuLearnPage + "?Status=0", {
@@ -163,6 +159,16 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
                         $('#wlhWEItable').hide();
                         $("#wlhWEItable_header").hide();
                     }
+                    if(pageIndex == 1){                        
+                        for(var i in res.data){
+                            if(i<=1){
+                                res.data[i].isShow=true;
+                            }else{
+                                res.data[i].isShow=false;
+                            }
+                        }
+                    }
+
                     $scope.studyLists_wei = res.data;
 
                     $rootScope.weiNum = res.total;

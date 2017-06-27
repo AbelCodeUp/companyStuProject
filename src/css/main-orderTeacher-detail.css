@@ -123,7 +123,9 @@
 }
 .dropup .dropdown-menu{
     top:auto;
-    bottom: 92%;
+    bottom: 100%;
+    margin:0;
+    padding:0;
 }
 @media screen and (min-width:1400px) {
  .teacher-detail-left-item-box-pad{

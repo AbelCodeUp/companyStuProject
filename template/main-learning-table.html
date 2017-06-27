@@ -155,13 +155,13 @@
                             <div style="text-align: center!important" ng-if="studyList.LessonName.length>1" >
                                {{studyList.LessonName}}
                                 <img src="/images/wlh_reClass.png" alt="" ng-class="{'reBlock':studyList.IsAgain==1, 'reNone':studyList.IsAgain==0}" style="vertical-align: middle"/>
-                                <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="_blank" ng-if="studyList.LatelyLesson == 1 && studyList.IsDemo != 1 && studyList.LessonName.length > 1" onClick="_czc.push(['_trackEvent', '学习记录页,暂无学习记录，预习按钮', '点击', '学习记录页,预习按钮']);" class="wlhyuxi">预习</a>
+                                <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="_blank" ng-show="studyList.isShow" onClick="_czc.push(['_trackEvent', '学习记录页,暂无学习记录，预习按钮', '点击', '学习记录页,预习按钮']);" aa='{{$index}}' class="wlhyuxi" style='color:#fff!important'>预习</a>
                             </div>
                             <div style="text-align: center!important"  ng-if="studyList.LessonName==' '||studyList.LessonName.length < 1">待定</div>
                         </td>
                         <td style="position:relative;">
                             <div class="b_tchNameBox">
-                                <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" default-img="{{studyList.Gender}}"/></div>
+                                <div class="wlhTeacherImg"><img ng-src="{{studyList.ImageUrl}}" default-img="{{studyList.Gender}}" sex-img="{{studyList.Gender}}"/></div>
                                 <div style="float:left;line-height: 60px;">
                                 <span style="padding-left: 5px;padding-right: 5px;word-wrap:break-word;position:relative;">
                                     {{studyList.TeacherName}}
