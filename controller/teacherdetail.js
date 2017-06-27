@@ -143,7 +143,7 @@ teacherDetailCtrl.controller('teacherDetailCtrl', function($scope, $rootScope, $
 					}
 
 					if ($scope.teacherTimes.length > 0) {
-						console.log($scope.teacherTimes[0].date);
+
 						$scope.getTeacherTime($scope.teacherTimes[0].date);
 
 						//默认lessonId
@@ -235,6 +235,8 @@ teacherDetailCtrl.controller('teacherDetailCtrl', function($scope, $rootScope, $
 
 		$scope.timeIndex = null; //清空选择的时间样式
 
+
+
 		for (var index in $scope.teacherTimes) {
 
 			if ($scope.teacherTimes[index].date == date) {
@@ -254,6 +256,7 @@ teacherDetailCtrl.controller('teacherDetailCtrl', function($scope, $rootScope, $
 
 		$scope.timeIndex = 0;
 		$scope.thisTime = $scope.allTime[0].lTime;
+		$scope.thisLessonId = $scope.allTime[0].lessonId;
 
 	}
 

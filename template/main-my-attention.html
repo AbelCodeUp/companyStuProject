@@ -398,6 +398,9 @@
         color: #ff4431;
         height: 26px;
     }
+    .tinytooltip{
+        z-index: 9999;
+    }
 </style>
 <link rel="stylesheet" href="amin-my-attention.css">
 <div class="col-lg-12" style="font-family:'Microsoft YaHei'!important; ">
@@ -517,6 +520,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
 <!--改 start-->
 <!-- 取消关注 -->
 <div id="l_guanzhu" class="m-guanzhu modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true"
@@ -633,9 +637,9 @@
 </style>
 <script>
     $('.cardName').tinytooltip({        
-message: function (tip) {
+            message: function (tip) {
             return $(this).html();
         }    
-});
+    });
 
 </script>

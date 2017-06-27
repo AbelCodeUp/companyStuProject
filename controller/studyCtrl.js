@@ -159,6 +159,10 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
                         $('#wlhWEItable').hide();
                         $("#wlhWEItable_header").hide();
                     }
+                    if(res.data.length == 0 && $rootScope.studyIndex > 1){
+                        $rootScope.studyIndex = $rootScope.studyIndex - 1;
+                        $scope.getStudyList($rootScope.studyIndex);
+                    }
                     if(pageIndex == 1){                        
                         for(var i in res.data){
                             if(i<=1){

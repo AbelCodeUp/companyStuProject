@@ -162,7 +162,7 @@ orderTeacherCtrl.controller('orderTeacherCtrl', ['$scope', '$rootScope', '$cooki
 						dayState: '上午',
 						dayAttrs: month
 					}
-					if (i <= 10) {
+					if (i < 10) {
 						if (compare_hms(showTime, i + ':' + timeAttr[j], thisTime) == 1) {
 
 							month.push({
