@@ -364,6 +364,11 @@ MyAttention.controller('MyAttentionCtrl', ['$scope', '$rootScope', '$filter' ,'$
 						// alert('登录时间太久，请重新登录');
 						$rootScope.$state.go('index.login');
 					}
+					$('#chooseTeacherName').tinytooltip({
+						message: function (tip) {
+							return $(this).html();
+						}
+					});
 				})
 			$('.modal-con').mCustomScrollbar({
 				theme: "minimal"
