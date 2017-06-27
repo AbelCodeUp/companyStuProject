@@ -352,28 +352,6 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
     }
 
 
-
-
-    //回放的下拉列表
-    $scope.listFlag = true
-    $scope.xiaList = function (e) {
-        var thisDom = $(e.target);
-        var parent = $(thisDom).parents("div.wlhbackbox");
-        if ($scope.listFlag) {
-            $(thisDom).css('opacity', '0.5')
-            parent.find("ul").fadeIn();
-            $scope.listFlag = false;
-        } else {
-            $(thisDom).css('opacity', '1')
-            parent.find("ul").fadeOut();
-            $scope.listFlag = true;
-        }
-
-    }
-
-
-
-
     // layerpage 
     function jsonpage(json, pageIndex, pageSize, cont) {
         var coun = json.total;

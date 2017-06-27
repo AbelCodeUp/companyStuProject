@@ -287,10 +287,10 @@
                         <!-- ng-if="studyList.PageStatus == 3 || studyList.PageStatus == 4" -->
                         <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="复习按钮']);"
                             style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;border-radius:3px;display: inline-block;color:#cf121c!important;'>课件</a>
-                        <div ng-if="studyList.Path != ''" class='wlhbackbox' style='display:inline-block;position: relative;cursor: pointer;'>
+                        <div ng-if="studyList.Path != ''" class='wlhbackbox' style='display:inline-block;position: relative;cursor: pointer;' ng-mouseenter="showtimes = true" ng-mouseleave="showtimes = false">
                             <!-- <span ng-show="$index >= 0">|&nbsp;</span> -->
-                            <a style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;background:#cf121c;border-radius:3px;display: inline-block;color:#fff!important;' ng-click='xiaList($event);'>回放</a>
-                            <ul style='position: absolute;left:0;top:36px;display: none'>
+                            <a style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;background:#cf121c;border-radius:3px;display: inline-block;color:#fff!important;'>回放</a>
+                            <ul style='position: absolute;left:0;top:36px;' ng-show="showtimes">
                                 <li ng-repeat="sPath in studyList.Path.split(',')">
                                     <a ng-href="{{sPath}}" target="_blank" class="vedioHover" style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;display: inline-block;color:#cf121c!important;background:#fff!important'>录像{{$index + 1}}</a>
                                 </li>
