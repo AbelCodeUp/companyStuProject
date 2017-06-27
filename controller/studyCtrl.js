@@ -149,6 +149,7 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
 
             // $scope.etime = $filter('date')(nextYear,'yyyy-MM-dd');
             $('#studyNo').hide();
+            $('#studySuc').hide();
             httpService.get(_AjaxURL.GetStuLearnPage + "?Status=0", {
                 'pageIndex': pageIndex,
                 'pageSize': $scope.pageSize,
@@ -203,6 +204,7 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
         // var nextYear = new Date($rootScope.serviceTime).setFullYear(new Date($rootScope.serviceTime).getFullYear() + 1);
 
         // $scope.etime = $filter('date')(nextYear,'yyyy-MM-dd');
+        $('#studySuc').hide();
         $('#studyNo').hide();
         httpService.get(_AjaxURL.GetStuLearnPage + "?Status=1", {
             'pageIndex': pageIndex,
@@ -213,7 +215,7 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
             if (res.result == 1) {
 
                 if (res.data.length == 0 && pageIndex == 1) {
-                    $('#studyNo').show();
+                    $('#studySuc').show();
                     $('#wlhSUCtable').hide();
                     $("#wlhSUCtable_header").hide();
                 }
