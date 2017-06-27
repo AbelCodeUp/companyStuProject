@@ -172,8 +172,17 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
                     $scope.studyLists_wei = res.data;
 
                     $rootScope.weiNum = res.total;
-                    jsonpage(res, pageIndex, $scope.pageSize, 'laypage');
+                    jsonpage(res, pageIndex, $scope.pageSize, 'laypage')
+
                     layer.close(index1);
+                    setTimeout(function(){
+                        $('.cardName').tinytooltip({
+                            message: function (tip) {
+                                return $(this).html();
+                            }
+                        });
+                    },600)
+                    
                 } else if (res.result >= 1000) {
                     layer.close(index1);
                     $cookies.remove('tonken');
@@ -183,7 +192,7 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
                     $cookies.remove('bookingId');
                     // alert('登录时间太久，请重新登录');
                     $rootScope.$state.go('index.login');
-                }
+                }               
 
             })
         }
@@ -231,6 +240,14 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
 
                 jsonpage(res, pageIndex, $scope.pageSize, 'laypages');
                 layer.close(index1);
+
+                setTimeout(function(){
+                    $('.cardName').tinytooltip({
+                        message: function (tip) {
+                            return $(this).html();
+                        }
+                    });
+                },600)
             } else if (res.result >= 1000) {
                 layer.close(index1);
                 $cookies.remove('tonken');
@@ -241,7 +258,6 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
                 // alert('登录时间太久，请重新登录');
                 $rootScope.$state.go('index.login');
             }
-
         })
     }
     //$scope.wlhSUC("#sucBox");
