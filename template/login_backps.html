@@ -14,7 +14,7 @@
     <form role="form" class="loginPwd_form" name="findPwdForm">
         <div class="form-group loginPwd_form_div has-feedback"
              ng-class="{'has-success':findPwdForm.username.$valid,'has-error':findPwdForm.username.$invalid && findPwdForm.username.$touched}">
-            <input type="text" class="form-control" name="username" 
+            <input type="text" name="username" class="form-control" 
                    ng-model="findPwdData.cell"    
                    placeholder="请输入11位手机号码"
                    required 
@@ -31,7 +31,7 @@
         </div>
         <div class="form-group loginPwd_form_div has-feedback"
              ng-class="{'has-success':findPwdForm.code.$valid,'has-error':findPwdForm.code.$invalid && findPwdForm.code.$touched}">
-            <input type="text" class="form-control duanxin" name="code" 
+            <input type="text" class="duanxin form-control" name="code" 
                     ng-model="findPwdData.code"    
                    placeholder="请输入短信验证码"
                    required  ng-pattern="/^\d{6}$/"
@@ -48,8 +48,8 @@
             </div>
         </div>
         <div class="form-group loginPwd_form_div has-feedback" ng-class="{'has-success':findPwdForm.password.$valid,'has-error':findPwdForm.password.$invalid && findPwdForm.password.$touched}">
-            <input type="password" name="password" class="form-control" 
-                placeholder="请设置新密码（6-12位）"
+            <input type="password" name="password"
+                placeholder="请设置新密码（6-12位）" class="form-control" 
                  ng-pattern="/^[a-zA-Z0-9!#@*-_.]{6,12}$/"
                 ng-model="findPwdData.newPsw"
                 required ng-focus>

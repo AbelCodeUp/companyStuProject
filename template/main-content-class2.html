@@ -115,7 +115,7 @@
                     <li>日期：{{leftDate}} {{leftWeek}}</li>
                     <li>时间：{{leftTime}}</li>
                     <li style="display: inline-block;">课程：{{lessonName}}</li>
-                    <li>状态：{{lessonStatue}}<button ng-if="preData.status != 0 || pinjinBtn " type="button" class="btn btn-rounded waves-effect waves-light Learning-Record-ul-btu" ng-class="{'btn-warning':preData.isComment == 0}" ng-click="AddTeacherTag(preData.lessonId)" ng-disabled="pinjin"><img ng-if="preData.isComment == 0" src="images/flag_red.gif">{{pjText}}</button></li>
+                    <li>状态：{{lessonStatue}}<button ng-if="preData.StuIsCome != 0 && preData.isComment != 0" type="button" class="btn btn-rounded waves-effect waves-light Learning-Record-ul-btu" ng-class="{'btn-warning':preData.isComment == 0}" ng-click="AddTeacherTag(preData.lessonId)" ng-disabled="pinjin"><img ng-if="preData.isComment == 0" src="images/flag_red.gif">{{pjText}}</button></li>
                 </ul>
             </div>
         </div>

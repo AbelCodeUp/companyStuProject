@@ -278,20 +278,105 @@ commonCtrl.controller('indexCtrl', ['$scope', '$rootScope', '$window', '$cookies
 	//课后评价
 	$scope.lessonTagId = null;
 
+	$rootScope.mainSubmit = null;
+
 	$rootScope.AddTeacherTag = function(lessonId) {
 
 		$scope.lessonTagId = lessonId;
 
 		$scope.teacherAttr = [];
 
+		$('#likeStar').raty({
+	        number: 3,
+	        score: 3,
+	        path     : null,
+	        starOn   : 'lib/img/star-on.png',
+	        starOff  : 'lib/img/star-off.png',
+	        click: function(score, evt) {
+	            $(this).attr('data-score',score);
+	            if(score==1){
+	                $(".pingjia-text1").text("没感觉");
+	            }else if(score==2){
+	                $(".pingjia-text1").text("和老师交流很愉快");
+	            }else if(score==3){
+	                $(".pingjia-text1").text("和老师互动非常开心");
+	            }
+
+
+	        },mouseover: function(score, evt) {
+
+	            if(score==1){
+	                $(".pingjia-text1").text("没感觉");
+	            }else if(score==2){
+	                $(".pingjia-text1").text("和老师交流很愉快");
+	            }else if(score==3){
+	                $(".pingjia-text1").text("和老师互动非常开心");
+	            }
+
+	        },mouseout: function(score, evt) {
+
+	            if(score==1){
+	                $(".pingjia-text1").text("没感觉");
+	            }else if(score==2){
+	                $(".pingjia-text1").text("和老师交流很愉快");
+	            }else if(score==3){
+	                $(".pingjia-text1").text("和老师互动非常开心");
+	            }
+
+	        }
+
+	    });
+	    $('#rememberStar').raty({
+	        number: 3,
+	        score: 3,
+	        path     : null,
+	        starOn   : 'lib/img/star-on.png',
+
+	        starOff  : 'lib/img/star-off.png',
+	        click: function(score, evt) {
+	            $(this).attr('data-score',score);
+	            if(score==1){
+	                $(".pingjia-text2").text("完全不记得");
+	            }else if(score==2){
+	                $(".pingjia-text2").text("记得一部分");
+	            }else if(score==3){
+	                $(".pingjia-text2").text("基本都记下了");
+	            }
+
+	        },mouseover: function(score, evt) {
+
+	            if(score==1){
+	                $(".pingjia-text2").text("完全不记得");
+	            }else if(score==2){
+	                $(".pingjia-text2").text("记得一部分");
+	            }else if(score==3){
+	                $(".pingjia-text2").text("基本都记下了");
+	            }
+
+	        },mouseout: function(score, evt) {
+
+	            if(score==1){
+	                $(".pingjia-text2").text("完全不记得");
+	            }else if(score==2){
+	                $(".pingjia-text2").text("记得一部分");
+	            }else if(score==3){
+	                $(".pingjia-text2").text("基本都记下了");
+	            }
+
+	        }
+
+	    });
+
 		$('#teacherTag').modal('show');
 
 		$('#techer-content').val('');
 
+		$rootScope.mainSubmit = 'mian';
+
 	}
 
 	//评价揚提交
-	$rootScope.SubmitTag = function(lessonId) {
+	$rootScope.SubmitTag = function(lessonId,type) {
 
 		httpService.post(_AjaxURL.CommentTeacher, {
 				'lessonId': lessonId,
@@ -302,15 +387,21 @@ commonCtrl.controller('indexCtrl', ['$scope', '$rootScope', '$window', '$cookies
 			})
 			.success(function(res) {
 				if (res.result == 1) {
+					layer.closeAll('loading');
 					layer.msg('提交成功', {
 						icon: 1
 					});
 
 					$('#teacherTag').modal('hide');
 
-					$rootScope.getStudyLists($rootScope.studyIndex);
+					if($rootScope.mainSubmit == 'main'){
+						$rootScope.getClassDatail();
+					}else{
 
+						$rootScope.getStudyLists($rootScope.studyIndex);
+					}
 
+					$rootScope.mainSubmit = null;
 
 
 				} else if (res.result >= 1000) {

@@ -15,7 +15,7 @@
     <form role="form" class="loginPwd_form" name="regForm">
         <div class="form-group loginPwd_form_div has-feedback"
             ng-class="{'has-success':regForm.username.$valid,'has-error':regForm.username.$invalid && regForm.username.$touched}">
-            <input type="text" class="form-control" name="username" 
+            <input type="text" name="username" class="form-control" 
                     ng-model="regData.Cell" required ng-maxlength="11" ng-pattern="/^1[34578]\d{9}$/"    
                    placeholder="请输入注册手机号码" autocomplete="off" ng-focus>
 

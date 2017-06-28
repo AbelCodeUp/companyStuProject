@@ -11,7 +11,7 @@
     <form role="form" class="loginPwd_form" name="loginForm">
         <div class="form-group loginPwd_form_div has-feedback"
             ng-class="{'has-success':loginForm.tel.$valid,'has-error':loginForm.tel.$invalid && loginForm.tel.$touched}">
-            <input type="text" class="form-control" name="tel" 
+            <input type="text"  name="tel" class="form-control"  
                    ng-model="loginData.UserName"    
                    placeholder="请输入11位手机号"
                    required 
@@ -33,7 +33,7 @@
             ng-class="
                     {'has-success':loginForm.password.$valid,
                     'has-error':loginForm.password.$touched && loginForm.password.$invalid}">
-            <input type="password" name="password" class="form-control" 
+            <input type="password" name="password" class="form-control"  
                 placeholder="请输入登录密码（6-12位）"
                 ng-pattern="/^[a-zA-Z0-9!#@*-_.]{6,12}$/"
                 ng-model="loginData.Password"

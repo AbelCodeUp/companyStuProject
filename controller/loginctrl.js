@@ -155,7 +155,7 @@ login.controller('loginCtrl', ['$scope', '$rootScope', 'loginService', '$cookies
 					$scope.isDisable = false;
 					layer.closeAll('loading');
 					misUrlStr = res.data;
-					// window.location.href = res.data;
+					window.location.href = res.data;
 
 				} else {
 					layer.open({
