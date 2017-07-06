@@ -91,6 +91,8 @@ var _AjaxURL = {
     ,'StuEnterDebug': Server_BaseUrl + 'api/Lesson/StuEnterDebug'
     //学员详情
     ,'GetInfo': Server_BaseUrl + 'api/Teacher/GetInfo'
+    //测评报告详情
+    ,'GetTestReprotInfo': Server_BaseUrl + 'api/User/OpenGGT_EvaluationReport'
 
 };
 /* End of AJAX 请求接口路径 */

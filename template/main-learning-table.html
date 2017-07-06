@@ -134,9 +134,9 @@
         <div class="orderTeacher_title">
             <ul class="orderul">
                 <li id="weiBox" style="margin-right:70px" ng-click="wlhWEI('#weiBox');"><p>未完成</p><div class="wlh_jiaobiao" ng-bind="weiNum"></div></li>
-                <li id="sucBox" ng-click="wlhSUC('#sucBox');"><p>已完成</p><div class="wlh_jiaobiao" ng-bind="sucNum"></div></li>
+                <li id="sucBox" ng-click="wlhSUC('#sucBox');"><p>已结束</p><div class="wlh_jiaobiao" ng-bind="sucNum"></div></li>
             </ul>
-            <p style="float: right;margin-right: 30px;"><a href="/stuLessonRoom.html?&type=debug&r=1.6" target="_blank">设备调试</a></p>
+            <!-- <p style="float: right;margin-right: 30px;"><a href="/stuLessonRoom.html?&type=debug&r=1.6" target="_blank">设备调试</a></p> -->
         </div>
         <div class="table-none" id="studyNo" style="display: block;">
             <img src="images/none/table-none.png">
@@ -245,7 +245,7 @@
                             {{studyList.LessonName}}
                             <img src="/images/wlh_reClass.png" alt="" ng-class="{'reBlock':studyList.IsAgain==1, 'reNone':studyList.IsAgain==0}" style="vertical-align: middle"/>
                         </div>
-                        <div style="text-align: center!important"  ng-if="studyList.LessonName==' '||studyList.LessonName.length < 1">待定</div>
+                        <div style="text-align: center!important"  ng-if="studyList.LessonName==' '||studyList.LessonName.length < 1"> -- </div>
                     </td>
                     <td style="position:relative;">
                         <div class="b_tchNameBox">
@@ -265,7 +265,7 @@
                               '{{studyList.tchState}}' ng-bind="studyList.tchState | isGuanZhu" data-tchid="{{studyList.TeacherId}}" ng-click="Attention_p($event)"></div>-->
                     </td>
                     <td>
-                        <div style="text-align: center!important;margin-bottom: 5px"><!-- {{studyList.PageStatus | stuList}} -->已完成</div>
+                        <div style="text-align: center!important;margin-bottom: 5px"><!-- {{studyList.PageStatus | stuList}} -->已结束</div>
                         <div style="text-align: center!important;">
                             <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light learning-table-over-btu" ng-if="studyList.StudentStatus != 0&&studyList.IsStuComment ==0 "
                                     ng-click="AddTeacherTag(studyList.LessonId)" onClick="_czc.push(['_trackEvent', '学习记录页,待评价按钮', '点击', '学习记录页,待评价按钮']);" style='width:62px;height:26px;border:1px solid #cf121c!important;border-radius:14px;background:#cf121c!important;color:#fff!important'>评价<!-- 
@@ -298,8 +298,9 @@
                         <!-- <a ng-href="{{studyList.ClassRoomUrl}}" data-url="{{studyList.ClassRoomUrl}}" ng-click="goQQRoom(studyList.LessonId, userName, $event)" target="_blank" ng-if="(studyList.PageStatus == 2 || (studyList.StartTime | fateDate)) && studyList.ClassRoomUrl != '---'" >QQ ROOM</a> -->
 
                         <!-- ng-if="studyList.PageStatus == 3 || studyList.PageStatus == 4" -->
-                        <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" target="复习按钮']);"
-                            style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;border-radius:3px;display: inline-block;color:#cf121c!important;'>课件</a>
+                        <a href="/PDFJSInNet/PDFJSInNet/web/viewer.html?name={{studyList.FilePath.slice(studyList.FilePath.lastIndexOf('/')+1)}}" ng-if="!(studyList.LessonName==' '||studyList.LessonName.length < 1)" target="复习按钮']);"
+                            style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;border-radius:3px;display: inline-block;color:#cf121c!important;'>复习课件</a>
+                        <div style="text-align: center!important"  ng-if="(studyList.LessonName==' '||studyList.LessonName.length < 1)&& !(studyList.Path != '')"> -- </div>
                         <div ng-if="studyList.Path != ''" class='wlhbackbox' style='display:inline-block;position: relative;cursor: pointer;' ng-mouseenter="huiFang(1,$event)" ng-mouseleave="huiFang(2,$event)">
                             <!-- <span ng-show="$index >= 0">|&nbsp;</span> -->
                             <a style='width:86px;height:36px;border:1px solid #cf121c;text-align: center;line-height: 36px;background:#cf121c;border-radius:3px;display: inline-block;color:#fff!important;'>回放</a>

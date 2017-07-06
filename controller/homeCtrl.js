@@ -84,7 +84,8 @@ homeCtrl.controller('rightbarCtrl', ['$scope', '$rootScope', 'isLoginState', '$c
 						$scope.package = showData.package[0];
 
 						var eTime = $scope.package.ExpireTime.split(' ')[0];
-						$scope.getDiffDay = DateDiff(eTime, $filter('date')($rootScope.serviceTime, 'yyyy-MM-dd'))
+						var diffDate = DateDiff(eTime, $filter('date')($rootScope.serviceTime, 'yyyy-MM-dd'));
+						$scope.getDiffDay = diffDate <= 0 ? '已失效' : '剩余'+diffDate+'天';
 
 					} else {
 						$scope.noBuyMeal = 0;
@@ -116,7 +117,7 @@ homeCtrl.controller('rightbarCtrl', ['$scope', '$rootScope', 'isLoginState', '$c
 		oDate1 = new Date(aDate[1] + '/' + aDate[2] + '/' + aDate[0]) //转换为12-18-2006格式  
 		aDate = sDate2.split("-")
 		oDate2 = new Date(aDate[1] + '/' + aDate[2] + '/' + aDate[0])
-		iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24) //把相差的毫秒数转换为天数  
+		iDays = parseInt((oDate1 - oDate2) / 1000 / 60 / 60 / 24) //把相差的毫秒数转换为天数  
 		return iDays
 	}
 

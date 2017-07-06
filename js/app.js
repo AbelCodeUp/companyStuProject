@@ -350,7 +350,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('home.testReportDetail', { //测评详情
-            url: '/testReportDetail/:inboxId',
+            url: '/testReportDetail/:testId',
             views: {
                 'content@home': {
                     templateUrl: 'template/main-Assessment-details.html?rgg=' + Math.floor(Date.now() / 1000),

@@ -54,7 +54,7 @@ comfilter.filter('stuList', function () {
 		} else if (num == 2) {
 			return '正在上课';
 		} else if (num == 0) {
-			return '未上课';
+			return '未开始';
 		} else if (num == 1) {
 			return '等待上课';
 		}
@@ -108,13 +108,23 @@ comfilter.filter('fateDateHourTwo', function ($rootScope, $filter) {
 comfilter.filter('weekDay', function ($rootScope) {
 	return function (date) {
 		var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '今日'];
-		var day = new Date(date).getDay();
-		var now = new Date($rootScope.serviceTime).getDay();
+		var day ;
+		if (date.indexOf('T')< 0) {
+			day = new Date(date.replace(/-/g, '/'));
+		}else{
+			day = new Date(date.split('T')[0].replace(/-/g, '/'));
+		}
 
-		if (day == now) {
+		var _day = day.getFullYear() +''+(day.getMonth()+1)+''+day.getDate();
+
+		var now = new Date($rootScope.serviceTime);
+
+		var _nDay = now.getFullYear() +''+(now.getMonth()+1)+''+now.getDate();
+
+		if (_day == _nDay) {
 			return weeks['7'];
 		} else {
-			return weeks[day];
+			return weeks[day.getDay()];
 		}
 	}
 })
@@ -210,5 +220,11 @@ comfilter.filter('getAge', function ($rootScope) {
 
 		// return  getAge(data,serverTime) == NaN ? '' : getAge(data,serverTime);
 		return getAge(data, serverTime) == 'NaN岁' ? '--' : getAge(data, serverTime);
+	}
+})
+//过滤百分比
+comfilter.filter('percentage',function(){
+	return function(num){
+		return (Math.round(num / 100 * 10000) / 100.00 + "%");// 小数点后两位百分比
 	}
 })

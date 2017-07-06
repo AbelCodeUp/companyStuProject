@@ -323,7 +323,7 @@
     border-radius: 0 5px 5px 0;
     outline: none;
 }
-.form-control:focus{
+.loginPwd_form_div .form-control:focus{
     border:0;
     background:none;
 }

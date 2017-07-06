@@ -395,7 +395,7 @@ commonCtrl.controller('indexCtrl', ['$scope', '$rootScope', '$window', '$cookies
 					$('#teacherTag').modal('hide');
 
 					if($rootScope.mainSubmit == 'main'){
-						$rootScope.getClassDatail();
+						// $rootScope.getClassDatail();
 					}else{
 
 						$rootScope.getStudyLists($rootScope.studyIndex);

@@ -1,37 +1,107 @@
+<style>
+    .allFont{
+        color:#0b253d!important;
+    }
+    .b_report_title{
+        height: 50px;
+        background: #f5f5f5;
+        padding:0 15px;
+    }
+    .b_report_title>div{
+        height: 100%;
+        line-height: 50px;
+    }
+    .b_report_m>p{
+        height: 100%;
+        line-height: 50px;
+    }
+    .font-16{
+        font-size: 16px!important;
+    }
+    .font-10{
+        font-size: 10px!important;
+    }
+    .font-9{
+        font-size: 9px!important;
+    }
+    .font-12{
+        font-size:12px!important;
+    }
+    .z_m{
+        width: 25px;
+        background: url('images/monthReportNum.png') no-repeat center;
+        background-size: 100%;
+        text-align: center;
+        padding-top: 3px;
+    }
+    .t_z_m{
+        width: 25px;
+        background: url('images/testReportIcon.png') no-repeat center;
+        background-size: 100%;
+        text-align: center;
+        padding-top: 3px;
+    }
+    .my-appraisal-item-top-1122{
+        background: #fff;
+    }
+    .reportName{
+        height: 37px;
+        line-height: 37px;
+        text-align: center;
+    }
+    .reportTime{
+        color: #637483!important;
+        text-align: center;
+        margin: 20px 0 10px 0;
+    }
+</style>
 <div class="col-lg-12">
     <!--日历 start-->
     <div class="orderTeacher"  style="min-height:600px;">
         <h2 class="orderTeacher_title">我的测评</h2>
 
-        <div class="row my-appraisal-1122">
+        <div class="row">
             <div class="col-md-3 col-sm-4 col-xs-6 my-appraisal-item-1122" ng-repeat="weekReport in weekReports">
-                <a href="javascript:;" ui-sref="home.weekReportDetail({weekId:weekReport.ReportId})" onClick="_czc.push(['_trackEvent', '我的测评页面月报按钮', '点击', '我的测评页面月报按钮']);">
+                <a href="javascript:;" class="allFont" ui-sref="home.weekReportDetail({weekId:weekReport.ReportId})" onClick="_czc.push(['_trackEvent', '我的测评页面月报按钮', '点击', '我的测评页面月报按钮']);">
+
                     <dl class="my-appraisal-item-top-1122">
+                        <div class="b_report_title clearfix">
+                            <div class="b_report_time pull-left font-16">
+                                2017年7月
+                            </div>
+                            <div class="b_report_m pull-right clearfix">
+                                <p class="pull-left font-12" style="margin-right:3px;">下半月</p>
+                                <p class="pull-left font-9 z_m">30</p>
+                            </div>
+                        </div>
                         <dt>
-                            <img src="images/appraisal/ceping2.png">
+                            <img src="images/monthReport.png">
+                            <p class="reportName font-16" ng-bind="weekReport.IsDemo"></p>
+                            <p class="reportTime font-10" ng-bind="weekReport.StartTime.substring(0,weekReport.StartTime.indexOf(' ')).replace('/g','-')"></p>
                         </dt>
-                        <dd ng-bind="weekReport.IsDemo"></dd>
                     </dl>
-                    <div class="row">
-                        <div class="my-appraisal-item-bottomdiv1-1122">{{weekReport.StartTime.substring(0,weekReport.StartTime.indexOf(' '))}}-{{weekReport.EndTime.substring(0,weekReport.EndTime.indexOf(' '))}}</div>
-                    </div>
-            </a>
+                </a>
             </div>
 
-            <div class="col-md-3 col-sm-4 col-xs-6 my-appraisal-item-1122" ng-repeat="rePort in monReports">
-                <a ng-href="{{rePort.url}}" target="_blank" onClick="_czc.push(['_trackEvent', '我的测评页面周报按钮', '点击', '我的测评页面周报按钮']);">
+            <div class="col-md-3 col-sm-4 col-xs-6 my-appraisal-item-1122"  ng-repeat="rePort in monReports">
+                <a ng-href="{{rePort.url}}" class="allFont" target="_blank" onClick="_czc.push(['_trackEvent', '我的测评页面周报按钮', '点击', '我的测评页面周报按钮']);">
                     <dl class="my-appraisal-item-top-1122">
+                        <div class="b_report_title clearfix">
+                            <div class="b_report_time pull-left font-16">
+                                Level {{rePort.LvItem}}
+                            </div>
+                            <div class="b_report_m pull-right clearfix">
+                                <p class="pull-left font-12" style="margin-right:3px;">{{rePort.LvValue}}分</p>
+                                <p class="pull-left font-9 t_z_m"></p>
+                            </div>
+                        </div>
                         <dt>
-                            <img src="images/appraisal/ceping1.jpg">
-                            <span>评级：LV{{rePort.LvItem}}</span>
+                            <img src="images/testReport.png">
+                            <p class="reportName font-16" ng-bind="weekReport.IsDemo"></p>
+                            <p class="reportTime font-10" ng-bind="CreateTime"></p>
                         </dt>
-                        <dd ng-bind="rePort.IsDemo"></dd>
                     </dl>
-                    <div class="row">
-                        <div class="my-appraisal-item-bottomdiv1-1122" ng-bind="CreateTime"></div>
-                        <div class="my-appraisal-item-bottomdiv2-1122">综合：{{rePort.LvValue}}分</div>
-                    </div>
-            </a>
+                 </a>
             </div>
 
         </div>
@@ -67,5 +137,4 @@
         </style>
 
     </div>
-
 </div>

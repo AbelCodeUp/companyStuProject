@@ -1,5 +1,5 @@
 var ReportCtrl = angular.module('ReportCtrl', []);
-ReportCtrl.controller('ReportListCtrl', function($scope, $rootScope, $cookies, httpService) {
+ReportCtrl.controller('ReportListCtrl', function ($scope, $rootScope, $cookies, httpService) {
 
     //右边栏显示隐藏
     $rootScope.isShowRightBar = false;
@@ -7,8 +7,8 @@ ReportCtrl.controller('ReportListCtrl', function($scope, $rootScope, $cookies, h
     $scope.noData = false; //默认没有数据
     httpService.get(_AjaxURL.GetReportsList, {
 
-        })
-        .success(function(res) {
+    })
+        .success(function (res) {
             if (res.result == 1) {
                 $scope.weekReports = [];
                 $scope.monReports = [];
@@ -27,19 +27,59 @@ ReportCtrl.controller('ReportListCtrl', function($scope, $rootScope, $cookies, h
         })
 
 });
-ReportCtrl.controller('ReportDetailCtrl', function($scope, $rootScope, $cookies, httpService) {
+ReportCtrl.controller('ReportDetailCtrl', function ($scope, $rootScope, $cookies, httpService, $stateParams) {
+    var testId = $stateParams.testId;
+    var testTime = $('#testTime');
 
+    var ComprehensiveScore = $('#ComprehensiveScore');
+    var GoodPoints = $('#GoodPoints');
+    var NeedToImprove = $('#NeedToImprove');
+    var EvalLists = $('.b_content_two_box li');
+    var b_cp_tishi = $('.b_cp_tishi');
+    // GetTestReprotInfo
+    httpService.post(_AjaxURL.GetTestReprotInfo + '?id=' + testId, {
 
+    })
+        .success(function (res) {
+            if (res.Result > 0) {
+                var creatTime = res.CreateTime;
+                creatTime = creatTime.split('T')[0].replace(/-/g, '.');
+                var EvalListArray = res.EvaluationAnalysisList;
+                $scope.level = res.EvaluationGrade;
+                
+                $scope.tEvalLists = EvalListArray[0];
+                $scope.fEvalLists = EvalListArray[0];
+                $scope.cEvalLists = EvalListArray[0];
+                $scope.yEvalLists = EvalListArray[0];
+                $scope.lEvalLists = EvalListArray[0];
+
+                // for (var i = 0; i < EvalLists.length; i++) {
+                //     EvalLists.eq(i).find('.b_test-num').text(EvalListArray[i].AssessmentScores + '分')
+                //     EvalLists.eq(i).find('.b_test_line').css('width', Percentage(EvalListArray[i].AssessmentScores, 100));
+                //     EvalLists.eq(i).find('.b_test_bottom_miaoshu').text(EvalListArray[i].AssessmentDesc);
+
+                // }
+                var strLevel = '<div class="b_cp_tishi">' +
+                    '您的级别<br>' +
+                    'level<span>' + level + '</span>' +
+                    '</div>';
+                $('.cp_box').eq(level - 1).prepend(strLevel);
+                $scope.testTime = creatTime;
+                $scope.ComprehensiveScore = res.ComprehensiveScore;
+                $scope.GoodPoints = res.GoodPoints;
+                $scope.NeedToImprove = res.NeedToImprove;
+            }
+        })
 
 });
-ReportCtrl.controller('weekReportDetailCtrl', function($scope, $rootScope, $cookies, httpService, $stateParams) {
+ReportCtrl.controller('weekReportDetailCtrl', function ($scope, $rootScope, $cookies, httpService, $stateParams) {
 
     $scope.weekId = $stateParams.weekId;
 
     httpService.get(_AjaxURL.GetWeekReportInfo, {
-            'weekId': $scope.weekId
-        })
-        .success(function(res) {
+        'weekId': $scope.weekId
+    })
+        .success(function (res) {
             if (res.result == 1) {
 
                 $scope.weekDetail = res.data;
@@ -52,7 +92,7 @@ ReportCtrl.controller('weekReportDetailCtrl', function($scope, $rootScope, $cook
                     $scope.StudentDes = res.data.StudentDes;
                 }
 
-                $scope.CodeImage ='http://'+ location.host + res.data.CodeImage;
+                $scope.CodeImage = 'http://' + location.host + res.data.CodeImage;
             } else if (res.result >= 1000) {
                 $cookies.remove('tonken');
                 $cookies.remove('username');
@@ -68,7 +108,7 @@ ReportCtrl.controller('weekReportDetailCtrl', function($scope, $rootScope, $cook
 
     function print() {
         html2canvas($("div#weekDown"), {
-            onrendered: function(canvas) {
+            onrendered: function (canvas) {
                 $('#down_button').attr('href', canvas.toDataURL());
                 $('#down_button').attr('download', 'myjobdeer.png');
             }
