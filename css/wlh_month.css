@@ -1,0 +1,211 @@
+
+.monthlyReportbox{
+	width: 978px;
+	height: 638px;
+	background: url(../images/report/report_bg.png) no-repeat 0 -1px;
+	background-size: 100%;
+	font-family: Arial,'微软雅黑';
+	margin:0 auto;
+}
+@media screen and (min-width: 1024px){
+	.monthlyReportbox{
+		transform: scale(0.6,0.6) translate(-281px,-178px);
+		
+	}
+}
+@media screen and (min-width: 700px){
+	.monthlyReportbox{
+		transform: scale(0.6,0.6) translate(-281px,-178px);
+		
+	}
+}
+.month-top{
+	padding:4px 4px 4px 0;
+	overflow: hidden;
+}
+.month-topLeft{
+	padding:0 43px;
+	height: 77px;
+	float:left;
+	line-height: 77px;
+	color:#fff;
+	font-size: 24px;
+}
+.month-topLogo{
+	float:right;
+	padding:0 17px;
+}
+.month-topLogo img{
+	padding-top: 16px;
+}
+.month-bottom{
+	padding:0 4px 4px 4px;
+	height: 549px;
+}
+.month-student{
+	float: left;
+	padding:33px 0 0px 30px;
+}
+.month-studentTop{
+	overflow: hidden;
+}
+.month-studentImg{
+	float: left;
+	margin-right: 43px;
+}
+.month-studentInter{
+	float: left;
+	color:#515151;
+	font-size: 14px;
+	margin-right: 43px;
+}
+.month-studentInter>h2{
+	font-size: 26px;
+	font-weight: normal;
+	color: #2c2c2c;
+	margin-top: 4px;
+	line-height: 48px;
+	width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.month-studentInter>p{
+	margin-top: 28px;
+	color: #6f6f6f;
+	font-size: 18px;
+}
+.wancheng{
+	margin-top: 26px;
+	line-height: 21px;
+}
+.month-studentInter img{
+	vertical-align: middle;
+	margin-right: 4px;
+}
+.month-sudentXin{
+	padding-top: 4px;
+	float:left;
+	font-size: 16px;
+	color:#1f1f1f;
+	line-height: 40px;
+}
+.month-sudentXin>div>span{
+	margin-right: 10px;
+}
+.month-sudentXin div>img{
+	margin-right: 12px;
+}
+.month-studentCon{
+	margin-top: 22px;
+	color:#080808;
+	font-size:18px;
+}
+.month-stuConTop{
+	line-height: 35px;
+	margin-bottom: 5px;
+}
+.month-stuConTop img{
+    vertical-align: middle;
+    margin-right: 13px;
+}
+.month-studentCon p{
+	width: 559px;
+	height: 234px;
+	line-height: 35px;
+	overflow: hidden;
+}
+.month-stuFengcai{
+	float:right;
+	width: 345px;
+	position: relative;
+	height: 501px;
+	padding-top: 73px;
+}
+.stuFengcaibox{
+	width: 147px;
+	height: 48px;
+	line-height: 48px;
+	color:#fff;
+	font-size: 20px;
+	padding-left: 47px;
+	background: url(../images/report/studentFencai.png) no-repeat;
+	position: absolute;
+	right:0;
+	top:23px;
+}
+
+.stuFengcaiImg{
+	width:98%;;
+	height: 229px;
+	position: relative;
+	padding:21px 14px 20px 0px;
+}
+.stuFengcaiImg img{
+	width: 100%;
+	height: 187px;
+}
+.jiaodai{
+	position: absolute;
+	width: 65px;
+	height: 67px;
+}
+.jiaodai1{
+	background:url(../images/report/jiaodai1.png) no-repeat;
+	left: -21px;
+	top:0;
+}
+.jiaodai3{
+	background:url(../images/report/jiaodai1.png) no-repeat;
+	right: -3px;
+	bottom:0px;
+}
+.jiaodai2{
+	background:url(../images/report/jiaodai2.png) no-repeat;
+	right: -3px;
+	top:-2px;
+}
+.jiaodai4{
+	background:url(../images/report/jiaodai2.png) no-repeat;
+	left: -20px;
+	bottom:0px;
+}
+.stuErweibox{
+	width: 256px;
+	height: 186px;
+}
+.stuErweiImg{
+	float: left;
+	width: 187px;
+	height: 187px;
+	box-sizing: border-box;
+	border:3px solid #f3a6a3;
+	background: #fdf5f3;
+	padding:10px 10px;
+	margin-right: 27px;
+}
+.stuErweiImg img{
+	width: 162px;
+	height: 162px;
+}
+.stuWord{
+	float: left;
+	font-size: 16px;
+	width: 21px;
+	writing-mode:tb-rl;
+	margin-top: 18pxs;
+}
+#down_button{
+	width: 134px;
+	height:56px;
+	background:#e74d47!important;
+	line-height: 56px;
+	color:#fff;
+	font-size: 20px;
+	border:#e74d47!important;
+	padding:0!important;
+	margin-top:10px;
+}

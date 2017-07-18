@@ -37,8 +37,8 @@ ReportCtrl.controller('ReportDetailCtrl', function ($scope, $rootScope, $cookies
     var EvalLists = $('.b_content_two_box li');
     var b_cp_tishi = $('.b_cp_tishi');
     // GetTestReprotInfo
-    httpService.post(_AjaxURL.GetTestReprotInfo + '?id=' + testId, {
-
+    httpService.post(_AjaxURL.GetTestReprotInfo, {
+        'id':testId,'type':'show'
     })
         .success(function (res) {
             if (res.Result > 0) {
@@ -72,14 +72,14 @@ ReportCtrl.controller('ReportDetailCtrl', function ($scope, $rootScope, $cookies
         })
 
 });
-ReportCtrl.controller('weekReportDetailCtrl', function ($scope, $rootScope, $cookies, httpService, $stateParams) {
+ReportCtrl.controller('weekReportDetailCtrl', function($scope, $rootScope, $cookies, httpService, $stateParams,$timeout) {
 
     $scope.weekId = $stateParams.weekId;
 
     httpService.get(_AjaxURL.GetWeekReportInfo, {
-        'weekId': $scope.weekId
-    })
-        .success(function (res) {
+            'weekId': $scope.weekId
+        })
+        .success(function(res) {
             if (res.result == 1) {
 
                 $scope.weekDetail = res.data;
@@ -91,8 +91,19 @@ ReportCtrl.controller('weekReportDetailCtrl', function ($scope, $rootScope, $coo
                 } else {
                     $scope.StudentDes = res.data.StudentDes;
                 }
+                $scope.lookpjList($(".lookStar").eq(0),res.data.LessonCount);
+                $scope.lookpjList($(".lookStar").eq(1),res.data.OntimeCount);
+                $scope.lookpjList($(".lookStar").eq(2),res.data.InteractionCount);
+                $scope.lookpjList($(".lookStar").eq(3),res.data.OnesCount);
 
-                $scope.CodeImage = 'http://' + location.host + res.data.CodeImage;
+                setTimeout(function(){
+                    $('.cardName').tinytooltip({
+                        message: function (tip) {
+                            return $(this).html();
+                        }
+                    });
+                },600)
+                $scope.CodeImage = res.data.CodeImage;
             } else if (res.result >= 1000) {
                 $cookies.remove('tonken');
                 $cookies.remove('username');
@@ -108,13 +119,18 @@ ReportCtrl.controller('weekReportDetailCtrl', function ($scope, $rootScope, $coo
 
     function print() {
         html2canvas($("div#weekDown"), {
-            onrendered: function (canvas) {
+            onrendered: function(canvas) {
                 $('#down_button').attr('href', canvas.toDataURL());
                 $('#down_button').attr('download', 'myjobdeer.png');
             }
         });
     }
 
+    $scope.lookpjList = function(obj,num){
+        for(var i=0;i<num;i++){
+            $('<img src="images/report/smallxin.png" alt="">').appendTo($(obj));
+        }
+    }
 
 
 });

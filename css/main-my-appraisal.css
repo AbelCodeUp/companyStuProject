@@ -9,7 +9,7 @@
     transition: all ease 0.8s;
 }
 .my-appraisal-item-top-1122:hover{
-    box-shadow: 0 6px 20px 4px #e3e3e3;
+    box-shadow: 0 8px 8px 0 #eee;
 }
 .my-appraisal-item-top-1122 dt{
     width: 100%;
@@ -43,15 +43,7 @@
 }
 .my-appraisal-item-bottomdiv1-1122{float: left;padding-left: 14px;padding-top: 10px;}
 .my-appraisal-item-bottomdiv2-1122{float:right;text-align: right;color: #dd5c5c;padding-right: 14px;padding-top: 10px;}
-@media screen and (max-width:1200px) {
-}
-@media screen and (min-width:1200px) {
-}
-@media screen and (min-width:1336px) {
-    .my-appraisal-item-1122{
-        width: 20%;
-    }
-}
+
 
 
 

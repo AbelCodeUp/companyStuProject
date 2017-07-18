@@ -156,13 +156,22 @@ comfilter.filter('getHours', function ($rootScope, $filter) {
 //获得月份
 comfilter.filter('getMonths', function ($rootScope, $filter) {
 	return function (date) {
-		return new Date(date).getMonth() + 1
+		var m = new Date(date).getMonth() + 1
+		if( m<10){
+            return "0"+m;
+		}else{
+			return m;
+		}
 	}
-})
-//获得当前天数
+})//获得当前天数
 comfilter.filter('getDates', function ($rootScope, $filter) {
 	return function (date) {
-		return new Date(date).getDate()
+		var m = new Date(date).getDate()
+		if( m<10){
+            return "0"+m;
+		}else{
+			return m;
+		}
 	}
 })
 // 课程第几节
@@ -226,5 +235,30 @@ comfilter.filter('getAge', function ($rootScope) {
 comfilter.filter('percentage',function(){
 	return function(num){
 		return (Math.round(num / 100 * 10000) / 100.00 + "%");// 小数点后两位百分比
+	}
+})
+//获取年月
+comfilter.filter('gdate',function(){
+	return function(date){
+		return new Date(date).getFullYear() + '年'+(new Date(date).getMonth()+1)+'月';
+	}
+})
+//获取日期
+comfilter.filter('gday',function(){
+	return function(date){
+		return new Date(date).getDate();
+	}
+})
+//判断上下半月
+comfilter.filter('gmonthref',function(){
+	return function(date){
+		var day = new Date(date).getDate();
+		return day > 15 ? '下半月':'上半月';
+	}
+})
+//过滤斜杠
+comfilter.filter('xdate',function(){
+	return function(date){
+		return date.replace(/\//g,'-');
 	}
 })

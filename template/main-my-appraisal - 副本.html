@@ -62,7 +62,7 @@
 <div class="col-lg-12">
     <!--日历 start-->
     <div class="orderTeacher"  style="min-height:600px;">
-        <h2 class="orderTeacher_title">我的报告</h2>
+        <h2 class="orderTeacher_title">我的测评</h2>
 
         <div class="row">
             <div class="col-md-3 col-sm-4 col-xs-6 my-appraisal-item-1122" ng-repeat="weekReport in weekReports">
@@ -81,15 +81,15 @@
                         </div>
                         <dt>
                             <img src="images/monthReport.png">
-                            <p class="reportName font-16">月报</p>
+                            <p class="reportName font-16" ng-bind="weekReport.IsDemo"></p>
                             <p class="reportTime font-10" ng-bind="weekReport.CreateTime.substring(0,weekReport.CreateTime.indexOf(' ')) | xdate"></p>
                         </dt>
                     </dl>
                 </a>
             </div>
-<!-- ng-href="{{rePort.url}}&pid={{rePort.ReportId}}"  -->
+
             <div class="col-md-3 col-sm-4 col-xs-6 my-appraisal-item-1122"  ng-repeat="rePort in monReports">
-                <a ui-sref="home.testReportDetail({testId:rePort.ReportId})" class="allFont" href="javascript:;" onClick="_czc.push(['_trackEvent', '我的测评页面周报按钮', '点击', '我的测评页面周报按钮']);">
+                <a ng-href="{{rePort.url}}&pid={{rePort.ReportId}}" class="allFont" target="_blank" onClick="_czc.push(['_trackEvent', '我的测评页面周报按钮', '点击', '我的测评页面周报按钮']);">
                     <dl class="my-appraisal-item-top-1122">
                         <div class="b_report_title clearfix">
                             <div class="b_report_time pull-left font-16">
@@ -102,7 +102,7 @@
                         </div>
                         <dt>
                             <img src="images/testReport.png">
-                            <p class="reportName font-16">测评报告</p>
+                            <p class="reportName font-16" ng-bind="rePort.IsDemo"></p>
                             <p class="reportTime font-10" ng-bind="rePort.CreateTime.substring(0,rePort.CreateTime.indexOf(' ')) | xdate"></p>
                         </dt>
                     </dl>

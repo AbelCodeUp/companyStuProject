@@ -8,7 +8,7 @@
 		<div class="monthlyReportbox" id="weekDown">
 			<div class="month-top">
 				<div class="month-topLeft">
-					<span style='font-size: 32px;'><span>{{weekDetail.StartTime | getMonths}}</span>月</span><span ng-if="(weekDetail.StartTime | getDates) >16 ">（上半月）</span><span ng-if="(weekDetail.StartTime | getDates) <=16 ">（上半月）</span>
+					<span style='font-size: 32px;'><span>{{weekDetail.StartTime | getMonths}}</span>月</span><span ng-if="(weekDetail.StartTime | getDates) >=16 ">（上半月）</span><span ng-if="(weekDetail.StartTime | getDates)<16 ">（上半月）</span>
 				</div>
 				<div class="month-topLogo">
 					<img src="images/report/logo.png" alt="">
@@ -46,14 +46,14 @@
 				<div class="month-stuFengcai">
 					<div class="stuFengcaibox">学员风采</div>
 					<div class='stuFengcaiImg'>
-						<img ng-src="http://manage.gogo-talk.com:9332{{weekDetail.Presence}}" alt="">
+						<img ng-src="{{weekDetail.Presence}}" alt="">
 						<div class="jiaodai jiaodai1"></div>
 						<div class="jiaodai jiaodai2"></div>
 						<div class="jiaodai jiaodai3"></div>
 						<div class="jiaodai jiaodai4"></div>
 					</div>
 					<div class="stuErweibox">
-						<div class="stuErweiImg"><img ng-src="http://manage.gogo-talk.com:9332{{CodeImage}}" alt=""></div>
+						<div class="stuErweiImg"><img ng-src="{{CodeImage}}" alt=""></div>
 						<div class="stuWord">识别二维码免费试听</div>
 					</div>
 				</div>
