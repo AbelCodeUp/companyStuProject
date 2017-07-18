@@ -7,6 +7,18 @@
 	font-family: Arial,'微软雅黑';
 	margin:0 auto;
 }
+@media screen and (min-width: 1024px){
+	.monthlyReportbox{
+		transform: scale(0.6,0.6) translate(-281px,-178px);
+		
+	}
+}
+@media screen and (min-width: 700px){
+	.monthlyReportbox{
+		transform: scale(0.6,0.6) translate(-281px,-178px);
+		
+	}
+}
 .month-top{
 	padding:4px 4px 4px 0;
 	overflow: hidden;

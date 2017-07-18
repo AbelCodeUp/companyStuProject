@@ -146,17 +146,17 @@ comfilter.filter('dateDay', function ($rootScope) {
 //获得小时
 comfilter.filter('getHours', function ($rootScope, $filter) {
 	return function (date) {
-		if (new Date(date).getMinutes() == 0) {
-			return new Date(date).getHours() + ":" + "00"
+		if (new Date(date.replace(/-/g, '/')).getMinutes() == 0) {
+			return new Date(date.replace(/-/g, '/')).getHours() + ":" + "00"
 		} else {
-			return new Date(date).getHours() + ":" + new Date(date).getMinutes()
+			return new Date(date.replace(/-/g, '/')).getHours() + ":" + new Date(date).getMinutes()
 		}
 	}
 })
 //获得月份
 comfilter.filter('getMonths', function ($rootScope, $filter) {
 	return function (date) {
-		var m = new Date(date).getMonth() + 1
+		var m = new Date(date.replace(/-/g, '/')).getMonth() + 1
 		if( m<10){
             return "0"+m;
 		}else{
@@ -166,7 +166,7 @@ comfilter.filter('getMonths', function ($rootScope, $filter) {
 })//获得当前天数
 comfilter.filter('getDates', function ($rootScope, $filter) {
 	return function (date) {
-		var m = new Date(date).getDate()
+		var m = new Date(date.replace(/-/g, '/')).getDate()
 		if( m<10){
             return "0"+m;
 		}else{
@@ -240,18 +240,21 @@ comfilter.filter('percentage',function(){
 //获取年月
 comfilter.filter('gdate',function(){
 	return function(date){
+		var date = date.replace(/-/g, '/');
 		return new Date(date).getFullYear() + '年'+(new Date(date).getMonth()+1)+'月';
 	}
 })
 //获取日期
 comfilter.filter('gday',function(){
 	return function(date){
+		var date = date.replace(/-/g, '/');
 		return new Date(date).getDate();
 	}
 })
 //判断上下半月
 comfilter.filter('gmonthref',function(){
 	return function(date){
+		var date = date.replace(/-/g, '/');
 		var day = new Date(date).getDate();
 		return day > 15 ? '下半月':'上半月';
 	}
