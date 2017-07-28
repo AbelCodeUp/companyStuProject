@@ -1,5 +1,6 @@
 {
   "bootstarp-select.js": "bootstarp-select.js?v=54b1188b73",
+  "debug.js": "debug.js?v=34e42c860c",
   "homectrl.js": "homectrl.js?v=a74b2da599",
   "indexctrl.js": "indexctrl.js?v=38b47785cf",
   "loginctrl.js": "loginctrl.js?v=b5ddb9a8ba",
@@ -10,6 +11,6 @@
   "orderteacherctrl.js": "orderteacherctrl.js?v=b401c0b5b9",
   "personctrl.js": "personctrl.js?v=157583495f",
   "reportctrl.js": "reportctrl.js?v=118e49f319",
-  "studyctrl.js": "studyctrl.js?v=8a2c88ead0",
+  "studyctrl.js": "studyctrl.js?v=67275af42e",
   "teacherdetail.js": "teacherdetail.js?v=6c00acf02b"
 }

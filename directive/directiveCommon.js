@@ -297,3 +297,25 @@ angular.module('components', [])
 
 
     })
+
+    .directive('backvideo', function(){
+        return {
+            restrict: 'A',
+            scope: {
+                hover: '='
+            },
+            link: function (scope, element, attrs, ctrl) {
+                $(element).hover(function(){
+                    $(this).find('a.hoverbtn').css('opacity',0.5);
+                    scope.$apply(function(){
+                        scope.hover = true;
+                    });
+                },function(){
+                    $(this).find('a.hoverbtn').css('opacity',1);
+                    scope.$apply(function(){
+                        scope.hover = false;
+                    });
+                })
+            }
+        }
+    })

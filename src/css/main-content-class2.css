@@ -221,6 +221,22 @@ p.keshi_1130
     background: url("../images/appraisal/contentbg2-e82a2ad.jpg") 24% bottom no-repeat #fff;
     background-size: 14%;
 }
+@media screen and (max-width: 1024px){
+    .main-content-class-middle{
+        background:#fff;
+    }
+    .Learning-Record{
+        background:#fff;
+    }
+}
+@media screen and (max-width: 700px){
+    .main-content-class-middle{
+        background:#fff;
+    }
+    .Learning-Record{
+        background:#fff;
+    }
+}
 .Learning-Record-title
 {
     font-size: 18px;

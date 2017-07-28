@@ -278,17 +278,17 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
         }
     })
 
-    $scope.huiFang=function(type,e){
-        var e=$(e.target);
-        if(type==1){
-            $(e).css('opacity','0.5');
-            $(".wlhbackbox>ul").hide();
-            $(e).next('ul').show();
-        }else{ 
-            $(".wlhbackbox>ul").hide();            
-            $(".wlhbackbox>a").css('opacity','1');
-        }
-    }
+    // $scope.huiFang=function(type,e){
+    //     var e=$(e.target);
+    //     if(type==1){
+    //         $(e).css('opacity','0.5');
+    //         $(".wlhbackbox>ul").hide();
+    //         $(e).next('ul').show();
+    //     }else{ 
+    //         $(".wlhbackbox>ul").hide();            
+    //         $(".wlhbackbox>a").css('opacity','1');
+    //     }
+    // }
 
 
     $http({
@@ -354,7 +354,7 @@ studyCtrl.controller('studyListCtrl', function ($scope, $rootScope, $cookies, $f
         })
 
     }
-
+    $scope.hover = false;
     $scope.lookpj = function (e) {
 
         var thisDom = $(e.target);
